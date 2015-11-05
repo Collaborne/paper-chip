@@ -1,0 +1,48 @@
+<link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="paper-chip.html">
+
+<dom-module id="paper-chips-section">
+
+	<template>
+	
+		<style>
+			:host {
+				display: block;
+				padding: 0 16px 10px 16px;
+			}
+
+			.header {
+				@apply(--paper-font-subhead);
+				opacity: var(--dark-secondary-opacity);
+				margin-top: 10px;
+			}
+			
+			.label {
+				margin-top: 10px;
+				margin-right: 10px;
+			}
+		</style>
+
+		<div class='header' hidden=[[!header]]>[[header]]</div>
+		<template is="dom-repeat" items="[[labels]]" as='label'>
+			<paper-chip class='label'>[[label]]</paper-chip>
+		</template>
+	</template>
+	         
+</dom-module>
+
+<script>
+
+(function() {
+
+	Polymer({
+		is: 'paper-chips-section',
+		properties: {
+			header: String,
+			labels: Array
+		}
+	});
+
+})();
+
+</script>

@@ -1,0 +1,24 @@
+{
+  "name": "paper-chip",
+  "version": "1.0.0",
+  "authors": [
+    "collaborne"
+  ],
+  "description": "A Material Design chip (Polymer 1.x)",
+  "main": "paper-chip.html",
+  "keywords": [
+    "web-components",
+    "polymer",
+    "paper",
+    "material design",
+    "chip"
+  ],
+  "license": "Apache 2",
+  "homepage": "http://www.apache.org/licenses/LICENSE-2.0",
+  "ignore": [
+    "**/.*"
+  ],
+  "dependencies": {
+    "polymer": "Polymer/polymer#^1.0.0"
+  }
+}

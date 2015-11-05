@@ -1,0 +1,35 @@
+<link rel="import" href="../polymer/polymer.html">
+
+<dom-module id="paper-chip">
+
+	<template>
+	
+		<style>
+			:host {
+				display: inline-block;
+				background-color: var(--paper-grey-300);
+				height: 32px;
+				line-height: 32px;
+				padding: 0 12px;
+				border-radius: 16px;
+				opacity: var(--dark-primary-opacity);
+				font-size: 13px;
+			}
+		</style>
+
+		<content></content>
+	</template>
+	         
+</dom-module>
+
+<script>
+
+(function() {
+
+	Polymer({
+		is: 'paper-chip'
+	});
+
+})();
+
+</script>
