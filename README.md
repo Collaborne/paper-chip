@@ -11,9 +11,9 @@ paper-chip [![Bower version](https://badge.fury.io/bo/paper-chip.svg)](http://ba
 `bower install Collaborne/paper-chip`
 
 ```html
-<paper-chip>Content</paper-chip>
+<paper-chip>Apples</paper-chip>
 
-<paper-chips-section header="Header" labels=[[arrayOfStrings]]></paper-chips-section>
+<paper-chips-section header="Fruits" labels=[[arrayOfStrings]]></paper-chips-section>
 ```
 
 
