@@ -8,7 +8,7 @@ paper-chip [![Bower version](https://badge.fury.io/bo/paper-chip.svg)](http://ba
 
 ## Usage
 
-`bower install paper-chip`
+`bower install Collaborne/paper-chip`
 
 ```html
 <paper-chip>Content</paper-chip>
