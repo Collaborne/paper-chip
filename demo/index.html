@@ -1,0 +1,23 @@
+<html>
+	<head>
+	    <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
+		<link rel="import" href="../../paper-styles/demo-pages.html">
+		<link rel="import" href="../paper-chip.html">
+		<link rel="import" href="../paper-chips-section.html">
+	</head>
+	
+	<body>
+		<template is="dom-bind">
+			<h4>Chip</h4>
+			<paper-chip>Apples</paper-chip>
+			
+			<h4>Chips section</h4>
+			<paper-chips-section id="section" header="Fruits" labels=[[fruits]]></paper-chips-section>
+		</template>
+		
+		<script>
+			document.querySelector('template[is=dom-bind]').fruits = ["Apples", "Pears", "Oranges"];
+		</script>
+		
+	</body>
+</html>
