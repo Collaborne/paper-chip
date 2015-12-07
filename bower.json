@@ -14,7 +14,7 @@
     "chip"
   ],
   "license": "Apache 2",
-  "homepage": "http://www.apache.org/licenses/LICENSE-2.0",
+  "homepage": "https://github.com/collaborne/paper-chip",
   "ignore": [
     "**/.*"
   ],
