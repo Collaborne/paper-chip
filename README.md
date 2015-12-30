@@ -1,3 +1,6 @@
+_[Demo and API Docs](http://collaborne.github.io/paper-chip)_
+
+
 paper-chip [![Bower version](https://badge.fury.io/bo/paper-chip.svg)](http://badge.fury.io/bo/paper-chip)
 =========
 
@@ -5,16 +8,9 @@ paper-chip [![Bower version](https://badge.fury.io/bo/paper-chip.svg)](http://ba
 
 ![Screenshot](/doc/screenshot.png "Screenshot")
 
-
-## Usage
+To use element:
 
 `bower install Collaborne/paper-chip`
-
-```html
-<paper-chip>Apples</paper-chip>
-
-<paper-chips-section header="Fruits" labels=[[arrayOfStrings]]></paper-chips-section>
-```
 
 
 ## License
