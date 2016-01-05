@@ -16,7 +16,7 @@ A section of chips
 <dom-module id="paper-chips-section">
 
 	<template>
-	
+
 		<style>
 			:host {
 				display: block;
@@ -28,7 +28,7 @@ A section of chips
 				color: var(--secondary-text-color);
 				margin-top: 10px;
 			}
-			
+
 			.label {
 				margin-top: 10px;
 				margin-right: 10px;
@@ -40,7 +40,7 @@ A section of chips
 			<paper-chip class='label'>[[label]]</paper-chip>
 		</template>
 	</template>
-	         
+
 </dom-module>
 
 <script>
@@ -50,7 +50,14 @@ A section of chips
 	Polymer({
 		is: 'paper-chips-section',
 		properties: {
+			/**
+			 * Text shown in the header
+			 */
 			header: String,
+
+			/**
+			 * Array of labels, e.g. [ "apples", "pears", "oranges" ]
+			 */
 			labels: Array
 		}
 	});
