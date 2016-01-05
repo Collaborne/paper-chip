@@ -38,7 +38,7 @@ be used to let users enter topics or contacts.
 		</style>
 
 		<paper-chips id='chips' items={{items}} empty={{_emptyItems}} on-delete-item='focus'></paper-chips>
-		<input is='iron-input' id='input' bind-value={{query}} placeholder=[[_getPlaceholder(_emptyItems,placeholder)]]></input>
+		<input is='iron-input' id='input' bind-value={{search}} placeholder=[[_getPlaceholder(_emptyItems,placeholder)]]></input>
 	</template>
 
 </dom-module>
@@ -53,7 +53,7 @@ be used to let users enter topics or contacts.
 			/**
 	    	 * Text for which the user is searching
 	    	 */
-	    	query: {
+	    	search: {
 	    		type: String,
 	    		notify: true,
 	    		value: ''
@@ -72,7 +72,7 @@ be used to let users enter topics or contacts.
 			},
 
 			/**
-			 * Text shown in the search box if the user didn't enter any query
+			 * Text shown in the search box if the user didn't enter any search
 			 */
 			placeholder: {
 				type: String,
@@ -89,7 +89,7 @@ be used to let users enter topics or contacts.
 			this.$.chips.add(item);
 
 			// Clear current search term
-			this.query = '';
+			this.search = '';
 
 			this.focus();
 		},
