@@ -1,0 +1,112 @@
+<link rel='import' href='../polymer/polymer.html'>
+<link rel='import' href='../iron-icon/iron-icon.html'>
+<link rel='import' href='../iron-icons/iron-icons.html'>
+<link rel='import' href='../paper-styles/paper-styles.html'>
+<link rel='import' href='paper-chip.html'>
+
+<!--
+A list of chips that an be dynamically added/removed. This element can be used
+to let users enter a list of topics or names.
+
+### Example
+
+```html
+<paper-chips items=[[array]]></paper-chips>
+```
+
+@demo demo/index.html
+-->
+<dom-module id='paper-chips'>
+
+	<template>
+
+		<style>
+			:host {
+    			line-height: 40px;
+			}
+
+			.chip {
+				margin-right: 10px;
+				padding-right: 6px;
+				@apply(layout-horizontal);
+			}
+
+			.delete {
+				--iron-icon-height: 20px;
+				--iron-icon-width: 20px;
+				color: var(--disabled-text-color);
+			}
+
+			.chip:hover .delete {
+				color: white;
+			}
+		</style>
+
+		<template is='dom-repeat' items=[[items]]>
+			<paper-chip class='chip' selectable>[[item.name]] <iron-icon icon='icons:cancel' class='delete' on-tap='_delete'></iron-icon></paper-chip>
+		</template>
+	</template>
+
+</dom-module>
+
+<script>
+
+(function() {
+
+	Polymer({
+		is: 'paper-chips',
+		properties: {
+			/**
+			 * Array of chips, e.g. [
+			 *  { id: 'apples', name: 'Apples'},
+			 *  { id: 'pears', name: 'Pears'}
+			 * ]
+			 */
+			items: {
+				type: Array,
+				value: []
+			}
+		},
+
+		/**
+		 * Adds a chip
+		 */
+		add: function(item) {
+			// Needs to use Polymer push to trigger data binding
+			this.push('items', item);
+		},
+
+		/**
+		 * Removes a chip
+		 */
+		remove: function(itemIndex) {
+			// Needs to use Polymer splice to trigger data binding
+			this.splice('items', itemIndex, 1);
+		},
+
+		/**
+		 * Removes the last chip
+		 */
+		removeLast: function() {
+			// Ignore if there are no chips left
+			if (this.items.length == 0) {
+				return;
+			}
+
+			this.remove(this.items.length - 1);
+		},
+
+		/**
+		 * Handles clicks on the delete icon
+		 */
+		_delete: function(e) {
+			var itemIndex = this.items.indexOf(e.model.item);
+			if (itemIndex > -1) {
+				this.remove(itemIndex);
+			}
+		}
+	});
+
+})();
+
+</script>

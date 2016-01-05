@@ -28,9 +28,15 @@ A material design [chip](https://www.google.com/design/spec/components/chips.htm
 				font-size: 13px!important;
 				@apply(--paper-font-body1);
 			}
+
+			:host[selectable]:hover {
+				color: white!important;
+				background-color: var(--paper-grey-600);
+			}
 		</style>
 
 		<content></content>
+
 	</template>
 
 </dom-module>
@@ -40,7 +46,13 @@ A material design [chip](https://www.google.com/design/spec/components/chips.htm
 (function() {
 
 	Polymer({
-		is: 'paper-chip'
+		is: 'paper-chip',
+		properties: {
+			selectable: {
+				type: Boolean,
+				value: false
+			}
+		}
 	});
 
 })();
