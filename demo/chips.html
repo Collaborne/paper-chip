@@ -8,8 +8,7 @@
 
 	<body>
 		<template is="dom-bind">
-			<h4>Chips</h4>
-			<paper-chips id="chips" header="Fruits" items=[[fruits]]></paper-chips><br>
+			<paper-chips id="chips" items=[[fruits]]></paper-chips><br>
 			<input is="iron-input" bind-value={{newFruit}}></input> <button on-tap='onAdd'>Add</button>
 			<button on-tap='onRemoveLast'>Remove last chip</button>
 		</template>
