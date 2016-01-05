@@ -21,12 +21,8 @@ to let users enter a list of topics or names.
 	<template>
 
 		<style>
-			:host {
-    			line-height: 40px;
-			}
-
 			.chip {
-				margin-right: 10px;
+				margin-right: 5px;
 				padding-right: 6px;
 				@apply(layout-horizontal);
 			}
@@ -57,6 +53,12 @@ to let users enter a list of topics or names.
 		is: 'paper-chips',
 		properties: {
 			/**
+	         * Fired when the user deletes an item
+	         *
+	         * @event delete-item
+	         */
+
+			/**
 			 * Array of chips, e.g. [
 			 *  { id: 'apples', name: 'Apples'},
 			 *  { id: 'pears', name: 'Pears'}
@@ -64,7 +66,17 @@ to let users enter a list of topics or names.
 			 */
 			items: {
 				type: Array,
-				value: []
+				notify: true,
+				value: [],
+				observer: '_calcEmpty'
+			},
+
+			/**
+			 * True if no items are currently known
+			 */
+			empty: {
+				type: Boolean,
+				notify: true
 			}
 		},
 
@@ -72,8 +84,15 @@ to let users enter a list of topics or names.
 		 * Adds a chip
 		 */
 		add: function(item) {
+			// Only chips with a visible name
+			if (typeof item.name === 'undefined' || item.name === '')  {
+				return;
+			}
+
 			// Needs to use Polymer push to trigger data binding
 			this.push('items', item);
+
+			this._calcEmpty();
 		},
 
 		/**
@@ -82,6 +101,10 @@ to let users enter a list of topics or names.
 		remove: function(itemIndex) {
 			// Needs to use Polymer splice to trigger data binding
 			this.splice('items', itemIndex, 1);
+
+			this._calcEmpty();
+
+			this.fire('delete-item');
 		},
 
 		/**
@@ -104,6 +127,13 @@ to let users enter a list of topics or names.
 			if (itemIndex > -1) {
 				this.remove(itemIndex);
 			}
+		},
+		/**
+		 * Calculates the value for empty. This can't be a simple computed function
+		 * because Polymer doesn't trigger it based on changes to the `items` array.
+		 */
+		_calcEmpty: function() {
+			this.empty = this.items.length === 0;
 		}
 	});
 

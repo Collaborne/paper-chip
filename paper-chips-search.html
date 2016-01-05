@@ -1,0 +1,118 @@
+<link rel='import' href='../polymer/polymer.html'>
+<link rel='import' href='../iron-icon/iron-icon.html'>
+<link rel='import' href='../iron-icons/iron-icons.html'>
+<link rel="import" href="../iron-input/iron-input.html">
+<link rel='import' href='../paper-styles/paper-styles.html'>
+<link rel='import' href='paper-chips.html'>
+
+<!--
+A search box in which selected values are collected as chips. This element can
+be used to let users enter topics or contacts.
+
+### Example
+
+```html
+<paper-chips-search items=[[array]]></paper-chips-search>
+```
+
+@demo demo/chips-search.html
+-->
+<dom-module id='paper-chips-search'>
+
+	<template>
+
+		<style>
+			:host {
+				background: white;
+				display: block;
+				padding: 5px 16px;
+				min-height: 32px;
+			}
+
+			#input {
+				border: 0;
+				outline: 0;
+				width: 33%;
+				height: 32px;
+			}
+		</style>
+
+		<paper-chips id='chips' items={{items}} empty={{_emptyItems}} on-delete-item='focus'></paper-chips>
+		<input is='iron-input' id='input' bind-value={{query}} placeholder=[[_getPlaceholder(_emptyItems,placeholder)]]></input>
+	</template>
+
+</dom-module>
+
+<script>
+
+(function() {
+
+	Polymer({
+		is: 'paper-chips-search',
+		properties: {
+			/**
+	    	 * Text for which the user is searching
+	    	 */
+	    	query: {
+	    		type: String,
+	    		notify: true,
+	    		value: ''
+	    	},
+
+			/**
+			 * Array of chips, e.g. [
+			 *  { id: 'apples', name: 'Apples'},
+			 *  { id: 'pears', name: 'Pears'}
+			 * ]
+			 */
+			items: {
+				type: Array,
+				notify: true,
+				value: []
+			},
+
+			/**
+			 * Text shown in the search box if the user didn't enter any query
+			 */
+			placeholder: {
+				type: String,
+				value: 'Search'
+			},
+
+			_emptyItems: Boolean
+		},
+
+		/**
+		 * Adds a chip
+		 */
+		add: function(item) {
+			this.$.chips.add(item);
+
+			// Clear current search term
+			this.query = '';
+
+			this.focus();
+		},
+
+		/**
+		 * Focuses the input box
+		 */
+		focus: function() {
+			this.$.input.focus();
+		},
+
+		/**
+		 * Only show the placeholder if no items are selected
+		 */
+		_getPlaceholder: function(_emptyItems,placeholder) {
+			if (!_emptyItems) {
+				return '';
+			}
+
+			return placeholder;
+		}
+	});
+
+})();
+
+</script>
