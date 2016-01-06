@@ -1,4 +1,5 @@
 <link rel='import' href='../polymer/polymer.html'>
+<link rel="import" href="../iron-a11y-keys-behavior/iron-a11y-keys-behavior.html">
 <link rel='import' href='../iron-icon/iron-icon.html'>
 <link rel='import' href='../iron-icons/iron-icons.html'>
 <link rel="import" href="../iron-input/iron-input.html">
@@ -83,6 +84,15 @@ be used to let users enter topics or contacts.
 			_emptyItems: Boolean
 		},
 
+
+	    behaviors: [
+      		Polymer.IronA11yKeysBehavior
+   	    ],
+
+		keyBindings: {
+			'backspace': '_removeLastChip'
+		},
+
 		/**
 		 * Adds a chip
 		 */
@@ -111,6 +121,13 @@ be used to let users enter topics or contacts.
 			}
 
 			return placeholder;
+		},
+
+		_removeLastChip: function() {
+			// Only delete last chip if there is no text (otherwise: delete first last character of the text)
+			if (this.search.length == 0) {
+				this.$.chips.removeLast();
+			}
 		}
 	});
 
