@@ -1,5 +1,4 @@
 <link rel='import' href='../polymer/polymer.html'>
-<link rel="import" href="../iron-a11y-keys-behavior/iron-a11y-keys-behavior.html">
 <link rel='import' href='../iron-icon/iron-icon.html'>
 <link rel='import' href='../iron-icons/iron-icons.html'>
 <link rel="import" href="../iron-input/iron-input.html">
@@ -35,12 +34,12 @@ be used to let users enter topics or contacts.
 				border: 0;
 				outline: 0;
 				width: 33%;
-				height: 40px;
+				height: 32px;
 			}
 		</style>
 
 		<paper-chips id='chips' items={{items}} empty={{_emptyItems}} on-delete-item='focus'></paper-chips>
-		<input is='iron-input' id='input' bind-value={{search}} placeholder=[[_getPlaceholder(_emptyItems,placeholder)]]></input>
+		<input is='iron-input' id='input' bind-value={{search}} placeholder=[[_getPlaceholder(_emptyItems,placeholder)]] autofocus=[[autofocus]]></input>
 	</template>
 
 </dom-module>
@@ -80,16 +79,13 @@ be used to let users enter topics or contacts.
 				type: String,
 				value: 'Search'
 			},
+			
+			/**
+			 * Bind this to the `<input is="iron-input">`'s `autofocus` property.
+			 */
+			autofocus: Boolean,
 
 			_emptyItems: Boolean
-		},
-
-	    behaviors: [
-      		Polymer.IronA11yKeysBehavior
-   	    ],
-
-		keyBindings: {
-			'backspace': '_removeLastChip'
 		},
 
 		/**
@@ -120,13 +116,6 @@ be used to let users enter topics or contacts.
 			}
 
 			return placeholder;
-		},
-
-		_removeLastChip: function() {
-			// Only delete last chip if there is no text (otherwise: delete first last character of the text)
-			if (this.search.length == 0) {
-				this.$.chips.removeLast();
-			}
 		}
 	});
 
