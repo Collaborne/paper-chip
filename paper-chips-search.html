@@ -1,9 +1,9 @@
-<link rel='import' href='../polymer/polymer.html'>
-<link rel='import' href='../iron-icon/iron-icon.html'>
-<link rel='import' href='../iron-icons/iron-icons.html'>
+<link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="../iron-icon/iron-icon.html">
+<link rel="import" href="../iron-icons/iron-icons.html">
 <link rel="import" href="../iron-input/iron-input.html">
-<link rel='import' href='../paper-styles/paper-styles.html'>
-<link rel='import' href='paper-chips.html'>
+<link rel="import" href="../paper-styles/paper-styles.html">
+<link rel="import" href="paper-chips.html">
 
 <!--
 A search box in which selected values are collected as chips. This element can
@@ -17,7 +17,7 @@ be used to let users enter topics or contacts.
 
 @demo demo/chips-search.html
 -->
-<dom-module id='paper-chips-search'>
+<dom-module id="paper-chips-search">
 
 	<template>
 
@@ -38,8 +38,8 @@ be used to let users enter topics or contacts.
 			}
 		</style>
 
-		<paper-chips id='chips' items={{items}} empty={{_emptyItems}} on-delete-item='focus'></paper-chips>
-		<input is='iron-input' id='input' bind-value={{search}} placeholder=[[_getPlaceholder(_emptyItems,placeholder)]] autofocus=[[autofocus]]></input>
+		<paper-chips id="chips" items={{items}} empty={{_emptyItems}} on-delete-item="focus"></paper-chips>
+		<input is="iron-input" id="input" bind-value={{search}} placeholder=[[_getPlaceholder(_emptyItems,placeholder)]] autofocus=[[autofocus]]></input>
 	</template>
 
 </dom-module>

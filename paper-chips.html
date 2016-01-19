@@ -1,8 +1,8 @@
-<link rel='import' href='../polymer/polymer.html'>
-<link rel='import' href='../iron-icon/iron-icon.html'>
-<link rel='import' href='../iron-icons/iron-icons.html'>
-<link rel='import' href='../paper-styles/paper-styles.html'>
-<link rel='import' href='paper-chip.html'>
+<link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="../iron-icon/iron-icon.html">
+<link rel="import" href="../iron-icons/iron-icons.html">
+<link rel="import" href="../paper-styles/paper-styles.html">
+<link rel="import" href="paper-chip.html">
 
 <!--
 A list of chips that an be dynamically added/removed. This element can be used
@@ -16,7 +16,7 @@ to let users enter a list of topics or names.
 
 @demo demo/chips.html
 -->
-<dom-module id='paper-chips'>
+<dom-module id="paper-chips">
 
 	<template>
 
@@ -38,8 +38,8 @@ to let users enter a list of topics or names.
 			}
 		</style>
 
-		<template is='dom-repeat' items=[[items]]>
-			<paper-chip class='chip' selectable>[[item.name]] <iron-icon icon='icons:cancel' class='delete' on-tap='_delete'></iron-icon></paper-chip>
+		<template is="dom-repeat" items=[[items]]>
+			<paper-chip class="chip" selectable>[[item.name]] <iron-icon icon="icons:cancel" class="delete" on-tap="_delete"></iron-icon></paper-chip>
 		</template>
 	</template>
 

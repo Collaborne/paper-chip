@@ -1,6 +1,6 @@
-<link rel='import' href='../polymer/polymer.html'>
-<link rel='import' href='../paper-styles/paper-styles.html'>
-<link rel='import' href='paper-chip.html'>
+<link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="../paper-styles/paper-styles.html">
+<link rel="import" href="paper-chip.html">
 
 <!--
 A section of chips
@@ -8,12 +8,12 @@ A section of chips
 ### Example
 
 ```html
-<paper-chips-section header='Fruits' labels=[[arrayOfStrings]]></paper-chips-section>
+<paper-chips-section header="Fruits" labels=[[arrayOfStrings]]></paper-chips-section>
 ```
 
 @demo demo/chips-section.html
 -->
-<dom-module id='paper-chips-section'>
+<dom-module id="paper-chips-section">
 
 	<template>
 
@@ -35,9 +35,9 @@ A section of chips
 			}
 		</style>
 
-		<div class='header' hidden=[[!header]]>[[header]]</div>
-		<template is='dom-repeat' items=[[labels]] as='label'>
-			<paper-chip class='label'>[[label]]</paper-chip>
+		<div class="header" hidden=[[!header]]>[[header]]</div>
+		<template is="dom-repeat" items=[[labels]] as="label">
+			<paper-chip class="label">[[label]]</paper-chip>
 		</template>
 	</template>
 
