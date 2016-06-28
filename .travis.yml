@@ -10,11 +10,10 @@ cache:
 before_script:
 - npm install web-component-tester bower polylint
 - bower install
-- bower install -s https://${GH_TOKEN}@github.com/Collaborne/collaborne-build-tools.git
 - polylint
 - export PATH=$PWD/node_modules/.bin:$PATH
 script:
 - xvfb-run wct
-after_success: '[ ${TRAVIS_PULL_REQUEST} = "false" ] && [ ${TRAVIS_BRANCH} = "master" ] && bower_components/collaborne-build-tools/gpages_build.sh Collaborne info@collaborne.com'
+after_success: '[ ${TRAVIS_PULL_REQUEST} = "false" ] && [ ${TRAVIS_BRANCH} = "master" ] && bower install -s https://${GH_TOKEN}@github.com/Collaborne/collaborne-build-tools.git && bower_components/collaborne-build-tools/gpages_build.sh Collaborne info@collaborne.com'
 env:
-  secure: GamcxVChQr0VisivlKlgFla73BFNyK8RDgFjeCSSQ3heuMHHm4uhyhszaC45DKUhUXG5A1JvPyouaTidnZ+0voKHIDFBq5bZFogxfqc/xnGVaKh9Py8k3PhdHn0zMRVB/VofFLeRYXmV9FuHT8ZSyYR2ax45UJCn9DoKBHaYWKPHTTiq1HagJYcYVncjn6gdRqY0m+6TY45kk/K2EP6VyuVGkw8k1YnpoQGxl96PPQ8RKJ18qwPIBREDsX6e2xfxuRPBAmIakypnXG5ZnBDWKTMUk5hGuh30NtyuNq7pKy/akYrTHcmO3hHUt/Izyxr6Z8D3pDyVsXHNhou8Y1Ke3gw/4zEGvF5Bgkn+FoYiBE9593yEYoAB5fhrzY2lpqTAB/IGEbtsvTkONzP9tiPAlT4EsvKPq9HToVtMh+99P0jmcwdiaHFkTpJuY6YTk8sntx4ZsAuFvoiu30STcZtk5DcPy9kCnr7sfYdtL3jApCLxhAlwu3dNastaXFFnT8WoV5c1qNno0dCcGreuTe8lzGe4Ol9mvhpW72YyJ/XX4a304QcagZlL4ZUjwj2TW67m7zIZDkKAm5qreEcY5zlX5Knao+Djhrz7bAPu/ZGLksaush31xrxABISZgr/YqX3SpI5fGELdfkZ1L7f3j1YjgtdwZFKmgMZIs+5wt+EwjrQ=
+  secure: sUx3jQA+8MuVZG9o4Gt2ASl/RTWzzxo7yem64OHroOy88kaLR7Xcsw8NmkRYot/mkvUeDWhyJCg6nbbAxkK4dQ/yhswRP7uni4Mgit5HTpOVTU/580TOd33bpN2/qwikKcceTmUPfXQKeQRss3LBvJrDUMvXlEf7CSYqScCCfc3WSrVuf+8wogh2lrrLbDE4nfLw4fCEv5XwRcT5XPo/e7ZW/80JGW7Tg5+2bkhg6/BIZpP+fxm1s4t8ZGvhbK0u1pkXWI51w/BA1YXLYK7r/peZ8OTxvu579IlQ+VBOsg1AhrAe3CMxdbZGJt+f5vYshC1UHVautb4rSsWsr+1l7TVTF0K4u0eNJt9OfGYQCf/9Zfp9O82O22k9tAtBLSoC1L5935lq6x+z2GBbt0RJYxsFRfcwCLGljnI1yFNMG2lbxNAQmokokQaRvV9Qau0DWj/ifAMD9OcWClJOzhATNpYnf24JFiihQI6UV5IwOl2Hl/9Cj6p87PokCGcjxSZBZhet9NoRvlWrQHJALt4pEiDdWRayBtXhX7acvcLdfF49e/BdXY1mr69tPf0yjI0gbo578HLRr+G3Nv/iMDajBX7GSpmPcRRt36Chlv8p/VaRZ1lP22qISWNSQcPzC1iWwCuLDkFbbMkgmWccSqPjSLY+MxhwBvQcUkaOnoGA5qI=
