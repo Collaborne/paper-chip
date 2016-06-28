@@ -7,16 +7,17 @@
 
 	<body>
 		<template is="dom-bind">
-			<paper-chips-search id="chips" items={{items}} search={{search}}></paper-chips-search>
-			<button on-tap='onAdd'>Add</button><br>
+			<paper-chips-search id="chips" items="{{items}}"" search="{{search}}"></paper-chips-search>
+			<button on-tap="onAdd">Add</button><br>
 			TODO: Show search results for "[[search]]".
 		</template>
 
 		<script>
-			var scope = document.querySelector("template[is=dom-bind]");
+			var scope = document.querySelector('template[is=dom-bind]');
 			scope.items = [
 				{ id: 'apples', name: 'Apples' },
-				{ id: 'pears', name: 'Pears' }
+				{ id: 'pears', name: 'Pears' },
+				{ id: 'bananas', name: 'Bananas', fixed: true }
 			];
 			scope.onAdd = function() {
 				this.$.chips.add({ name: this.search });
