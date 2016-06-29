@@ -38,7 +38,7 @@ to let users enter a list of topics or names.
 			}
 		</style>
 
-		<template is="dom-repeat" items=[[items]]>
+		<template is="dom-repeat" items="[[items]]">
 			<paper-chip class="chip" selectable>[[item.name]] <iron-icon icon="[[_getIcon(item)]]" class="delete" on-tap="_delete"></iron-icon></paper-chip>
 		</template>
 	</template>
