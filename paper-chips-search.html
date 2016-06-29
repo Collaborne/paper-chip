@@ -129,9 +129,12 @@ be used to let users enter topics or contacts.
 		},
 
 		_removeLastChip: function() {
-			// Only delete last chip if there is no text (otherwise: delete first last character of the text)
-			if (this.search.length == 0) {
-				this.$.chips.removeLast();
+			// If there is search then backspace will remove some text, otherwise
+			// we check whether the last chip is not fixed and should be removed.
+			if (this.search.length === 0) {
+				if (!this.$.chips.empty && !this.$.chips.items[this.$.chips.items.length - 1].fixed) {
+					this.$.chips.removeLast();
+				}
 			}
 		}
 	});
