@@ -8,14 +8,14 @@
 
 	<body>
 		<template is="dom-bind">
-			<paper-chips id="chips" items=[[fruits]] empty={{empty}}></paper-chips><br>
-			<input is="iron-input" bind-value={{newFruit}}></input> <button on-tap='onAdd'>Add</button>
-			<button on-tap='onRemoveLast'>Remove last chip</button><br>
+			<paper-chips id="chips" items="[[fruits]]" empty="{{empty}}"></paper-chips><br>
+			<input is="iron-input" bind-value="{{newFruit}}"></input> <button on-tap="onAdd">Add</button>
+			<button on-tap="onRemoveLast">Remove last chip</button><br>
 			Is empty? [[empty]]
 		</template>
 
 		<script>
-			var scope = document.querySelector("template[is=dom-bind]");
+			var scope = document.querySelector('template[is=dom-bind]');
 			scope.fruits = [
 				{ id: 'apples', name: 'Apples' },
 				{ id: 'pears', name: 'Pears' },
