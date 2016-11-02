@@ -15,9 +15,9 @@
 		<script>
 			var scope = document.querySelector('template[is=dom-bind]');
 			scope.items = [
-				{ id: 'apples', name: 'Apples' },
+				{ id: 'apples', name: 'Apples', fixed: true },
 				{ id: 'pears', name: 'Pears' },
-				{ id: 'bananas', name: 'Bananas', fixed: true }
+				{ id: 'bananas', name: 'Bananas' }
 			];
 			scope.onAdd = function() {
 				this.$.chips.add({ name: this.search });
