@@ -36,8 +36,8 @@ be used to let users enter topics or contacts.
 			}
 		</style>
 
-		<paper-chips id="chips" items="{{items}}" empty="{{_emptyItems}}" on-delete-item="focus"></paper-chips>
-		<input is="iron-input" id="input" bind-value="{{search}}" placeholder="[[_getPlaceholder(_emptyItems,placeholder)]]" autofocus="[[autofocus]]"></input>
+		<paper-chips id="chips" items="{{items}}" on-delete-item="focus"></paper-chips>
+		<input is="iron-input" id="input" bind-value="{{search}}" placeholder="[[_getPlaceholder(items.length, placeholder)]]" autofocus="[[autofocus]]"></input>
 	</template>
 
 </dom-module>
@@ -78,13 +78,11 @@ be used to let users enter topics or contacts.
 				type: String,
 				value: 'Search'
 			},
-			
+
 			/**
 			 * Bind this to the `<input is="iron-input">`'s `autofocus` property.
 			 */
-			autofocus: Boolean,
-
-			_emptyItems: Boolean
+			autofocus: Boolean
 		},
 
 		behaviors: [
@@ -115,10 +113,11 @@ be used to let users enter topics or contacts.
 		},
 
 		/**
-		 * Only show the placeholder if no items are selected
+		 * Only show the placeholder if no non-fixed items are selected
 		 */
-		_getPlaceholder: function(_emptyItems,placeholder) {
-			if (!_emptyItems) {
+		_getPlaceholder: function(nrItems, placeholder) {
+			const nonFixedItems = this.items.filter(item => !item.fixed);
+			if (Boolean(nonFixedItems) && nonFixedItems.length > 0) {
 				return '';
 			}
 
