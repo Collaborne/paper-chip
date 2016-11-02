@@ -87,6 +87,28 @@
 						expect(element.items[0]).to.be.eql(deletableItem);
 					});
 				});
+
+				suite('placeholder behavior', function() {
+					test('placeholder is shown if no items are selected', function() {
+						expect(element._getPlaceholder(0, 'PLACEHOLDER')).to.be.eql('PLACEHOLDER');
+					});
+					test('placeholder is hidden if there are non-fixed selected items', function() {
+						element.items = [
+							{ id: 'apples', name: 'Apples', fixed: true },
+							{ id: 'pears', name: 'Pears' }
+						];
+
+						expect(element._getPlaceholder(1, 'PLACEHOLDER')).to.be.eql('');
+					});
+					test('placeholder is shown if there only fixed items', function() {
+						element.items = [
+							{ id: 'apples', name: 'Apples', fixed: true },
+							{ id: 'pears', name: 'Pears', fixed: true }
+						];
+
+						expect(element._getPlaceholder(1, 'PLACEHOLDER')).to.be.eql('PLACEHOLDER');
+					});
+				});
 			});
 		</script>
 
