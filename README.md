@@ -1,7 +1,7 @@
 _[Demo and API Docs](http://collaborne.github.io/paper-chip)_
 
 
-paper-chip [![Bower version](https://badge.fury.io/bo/paper-chip.svg)](http://badge.fury.io/bo/paper-chip)
+paper-chip [![Bower version](https://badge.fury.io/bo/paper-chip.svg)](http://badge.fury.io/bo/paper-chip) [![Build Status](https://travis-ci.org/Collaborne/paper-chip.svg?branch=master)](https://travis-ci.org/Collaborne/paper-chip)
 =========
 
 `paper-chip` provides a material design [chip](https://www.google.com/design/spec/components/chips.html) and a section of chips. The web component is built with [Polymer 1.x](https://www.polymer-project.org).
