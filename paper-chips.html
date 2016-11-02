@@ -75,7 +75,8 @@ to let users enter a list of topics or names.
 			 */
 			empty: {
 				type: Boolean,
-				notify: true
+				notify: true,
+				computed: '_computeEmpty(items.length)'
 			}
 		},
 
@@ -90,8 +91,6 @@ to let users enter a list of topics or names.
 
 			// Needs to use Polymer push to trigger data binding
 			this.push('items', item);
-
-			this._calcEmpty();
 		},
 
 		/**
@@ -102,8 +101,6 @@ to let users enter a list of topics or names.
 		remove: function(itemIndex) {
 			// Needs to use Polymer splice to trigger data binding
 			this.splice('items', itemIndex, 1);
-
-			this._calcEmpty();
 
 			this.fire('delete-item');
 		},
@@ -136,12 +133,9 @@ to let users enter a list of topics or names.
 				this.remove(itemIndex);
 			}
 		},
-		/**
-		 * Calculates the value for empty. This can't be a simple computed function
-		 * because Polymer doesn't trigger it based on changes to the `items` array.
-		 */
-		_calcEmpty: function() {
-			this.empty = this.items.length === 0;
+
+		_computeEmpty: function(nrItems) {
+			return nrItems === 0;
 		},
 
 		_getIcon: function(item) {
