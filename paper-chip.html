@@ -30,19 +30,22 @@ Custom property | Description | Default
 		<style>
 			:host {
 				display: inline-block;
-				background-color: var(--paper-chip-background, --paper-grey-300);
+				background-color: var(--paper-chip-background, var(--paper-grey-300));
 				height: 32px;
 				line-height: 32px!important;
 				padding: 0 12px;
 				border-radius: 16px;
 				color: var(--paper-chip-color, --primary-text-color);
 				font-size: 13px!important;
-				@apply(--paper-font-body1);
+				@apply --paper-font-body1;
 			}
 
-			:host[selectable]:hover {
-				color: var(--paper-chip-color-selectable, white!important);
-				background-color: var(--paper-chip-background-selectable, --paper-grey-600);
+			:host([selectable]) {
+				cursor: pointer;
+			}
+
+			:host([selectable]:hover) {
+				background-color: var(--paper-chip-background-selectable, var(--paper-grey-400));
 			}
 		</style>
 
@@ -61,9 +64,10 @@ Custom property | Description | Default
 		properties: {
 			selectable: {
 				type: Boolean,
-				value: false
-			}
-		}
+				value: false,
+				reflectToAttribute: true,
+			},
+		},
 	});
 
 })();

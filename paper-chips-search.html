@@ -36,8 +36,19 @@ be used to let users enter topics or contacts.
 			}
 		</style>
 
-		<paper-chips id="chips" items="{{items}}" on-delete-item="focus"></paper-chips>
-		<input is="iron-input" id="input" bind-value="{{search}}" placeholder="[[_getPlaceholder(items.length, placeholder)]]" autofocus="[[autofocus]]"></input>
+		<paper-chips
+			id="chips"
+			items="{{items}}"
+			on-delete-item="focus"
+		></paper-chips>
+		<iron-input bind-value="{{search}}">
+			<input
+				is="iron-input"
+				id="input"
+				placeholder="[[_getPlaceholder(items.length, placeholder)]]"
+				autofocus="[[autofocus]]"
+			></input>
+		</iron-input>
 	</template>
 
 </dom-module>

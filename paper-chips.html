@@ -1,5 +1,6 @@
 <link rel="import" href="../polymer/polymer.html">
 <link rel="import" href="../iron-icon/iron-icon.html">
+<link rel="import" href="../paper-styles/default-theme.html">
 <link rel="import" href="paper-chip.html">
 <link rel="import" href="paper-chip-icons.html">
 
@@ -31,13 +32,22 @@ to let users enter a list of topics or names.
 				color: var(--disabled-text-color);
 			}
 
-			.chip:hover .delete {
-				color: white;
+			.chip[selectable]:hover .delete {
+				color: black;
 			}
 		</style>
 
 		<template is="dom-repeat" items="[[items]]">
-			<paper-chip class="chip" selectable>[[item.name]] <iron-icon icon="paper-chip:[[_getIcon(item)]]" class="delete" on-tap="_delete"></iron-icon></paper-chip>
+			<paper-chip
+				class="chip"
+				selectable$="[[!item.fixed]]">
+				[[item.name]]
+				<iron-icon
+					icon="paper-chip:[[_getIcon(item)]]"
+					class="delete"
+					on-tap="_delete"
+				></iron-icon>
+			</paper-chip>
 		</template>
 	</template>
 
