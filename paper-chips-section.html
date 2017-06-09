@@ -41,27 +41,20 @@ A section of chips
 		</template>
 	</template>
 
+	<script>
+		Polymer({
+			is: 'paper-chips-section',
+			properties: {
+				/**
+				* Text shown in the header
+				*/
+				header: String,
+
+				/**
+				* Array of labels, e.g. [ 'Apples', 'Pears', 'Oranges' ]
+				*/
+				labels: Array
+			}
+		});
+	</script>
 </dom-module>
-
-<script>
-
-(function() {
-
-	Polymer({
-		is: 'paper-chips-section',
-		properties: {
-			/**
-			 * Text shown in the header
-			 */
-			header: String,
-
-			/**
-			 * Array of labels, e.g. [ 'Apples', 'Pears', 'Oranges' ]
-			 */
-			labels: Array
-		}
-	});
-
-})();
-
-</script>
