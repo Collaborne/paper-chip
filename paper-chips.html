@@ -14,6 +14,16 @@ to let users enter a list of topics or names.
 <paper-chips items=[[array]]></paper-chips>
 ```
 
+### Items
+
+The items given via the `items` property can have these properties:
+
+Property | Description
+---------|-------------
+`id`     | Unique identification of the item (required)
+`name`   | Display name of the item
+`fixed`  | Boolean to indicate whether this item can be removed (`fixed` is `false`) or not (`fixed` is `true`)
+
 @demo demo/chips.html
 -->
 <dom-module id="paper-chips">
@@ -62,11 +72,15 @@ to let users enter a list of topics or names.
 				*/
 
 				/**
-				* Array of chips, e.g. [
+				* Array of chips
+				*
+				* ```js
+				* [
 				*  { id: 'apples', name: 'Apples'},
 				*  { id: 'pears', name: 'Pears'},
 				*  { id: 'bananas', name: 'Bananas', fixed: true}
 				* ]
+				* ```
 				*/
 				items: {
 					type: Array,
