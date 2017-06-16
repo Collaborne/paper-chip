@@ -1,16 +1,27 @@
-_[Demo and API Docs](http://collaborne.github.io/paper-chip)_
-
-
-paper-chip [![Bower version](https://badge.fury.io/bo/paper-chip.svg)](http://badge.fury.io/bo/paper-chip) [![Build Status](https://travis-ci.org/Collaborne/paper-chip.svg?branch=master)](https://travis-ci.org/Collaborne/paper-chip)
+paper-chip [![Bower version](https://badge.fury.io/bo/paper-chip.svg)](http://badge.fury.io/bo/paper-chip) [![Build Status](https://travis-ci.org/Collaborne/paper-chip.svg?branch=master)](https://travis-ci.org/Collaborne/paper-chip) [![Published on webcomponents.org](https://img.shields.io/badge/webcomponents.org-published-blue.svg)](https://www.webcomponents.org/element/Collaborne/paper-chip)
 =========
 
 `paper-chip` provides a material design [chip](https://www.google.com/design/spec/components/chips.html) and a section of chips. The web component is built with [Polymer](https://www.polymer-project.org).
 
-![Screenshot](/doc/screenshot.png "Screenshot")
-
 To use element:
 
 `bower install Collaborne/paper-chip`
+
+<!--
+```
+<custom-element-demo>
+  <template>
+    <link rel="import" href="paper-chip.html">
+    <next-code-block></next-code-block>
+  </template>
+</custom-element-demo>
+```
+-->
+```html
+<paper-chip>Apples</paper-chip>
+<paper-chip selectable>Oranges</paper-chip>
+<paper-chip selectable>Pears</paper-chip>
+```
 
 
 ## License
