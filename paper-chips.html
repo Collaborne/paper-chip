@@ -117,10 +117,14 @@ Property | Description
 			* Note that this will also remove chips marked as 'fixed'.
 			*/
 			remove: function(itemIndex) {
+				const removedItemId = this.items[itemIndex].id;
+
 				// Needs to use Polymer splice to trigger data binding
 				this.splice('items', itemIndex, 1);
 
-				this.fire('delete-item');
+				this.fire('delete-item', {
+					itemId: removedItemId,
+				});
 			},
 
 			/**

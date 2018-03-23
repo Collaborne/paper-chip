@@ -9,7 +9,7 @@
 	<body>
 		<dom-bind>
 			<template>
-				<paper-chips id="chips" items="[[fruits]]" empty="{{empty}}"></paper-chips><br>
+				<paper-chips id="chips" items="[[fruits]]" empty="{{empty}}" on-delete-item="onRemove"></paper-chips><br>
 				
 				<iron-input bind-value="{{newFruit}}"><input></input></iron-input>
 
@@ -31,6 +31,10 @@
 			}
 			scope.onRemoveLast = function() {
 				this.$.chips.removeLast();
+			}
+			scope.onRemove = function(e) {
+				const {itemId} = e.detail;
+				alert(`Removed item: ${itemId}`);
 			}
 		</script>
 
