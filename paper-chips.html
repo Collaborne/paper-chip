@@ -34,6 +34,24 @@ Property | Description
 			.chip {
 				margin-right: 5px;
 				padding-right: 6px;
+				vertical-align: middle;
+			}
+			.chip:not([has-no-image]) {
+				--paper-chip: {
+					padding: 0 12px 0 0;
+					overflow: hidden;
+				}
+			}
+
+			img {
+				width: 32px;
+				height: 32px;
+				border-radius: 0 50% 50% 0;
+				vertical-align: middle;
+				margin-right: 4px;
+			}
+			.image-spacer {
+				margin-left: 12px;
 			}
 
 			.delete {
@@ -45,12 +63,18 @@ Property | Description
 			.chip[selectable]:hover .delete {
 				color: black;
 			}
+
+			[hidden] {
+				display: none;
+			}
 		</style>
 
 		<template is="dom-repeat" items="[[items]]">
 			<paper-chip
 				class="chip"
-				selectable$="[[!item.fixed]]">
+				selectable$="[[!item.fixed]]"
+				has-no-image$="[[!item.image]]">
+				<img src="[[_defaultToEmpty(item.image)]]" hidden$="[[!item.image]]" />
 				[[item.name]]
 				<iron-icon
 					icon="paper-chip:[[_getIcon(item)]]"
@@ -76,8 +100,8 @@ Property | Description
 				*
 				* ```js
 				* [
-				*  { id: 'apples', name: 'Apples'},
-				*  { id: 'pears', name: 'Pears'},
+				*  { id: 'apples', name: 'Apples', image:'apple.jpg' },
+				*  { id: 'pears', name: 'Pears', image:'pear.jpg'},
 				*  { id: 'bananas', name: 'Bananas', fixed: true}
 				* ]
 				* ```
@@ -158,6 +182,14 @@ Property | Description
 
 			_computeEmpty: function(nrItems) {
 				return nrItems === 0;
+			},
+
+			/**
+			 * Default string to empty.
+			 * URLs should be set to undefined as this leads to a 404 network request.
+			 */
+			_defaultToEmpty: function(str) {
+				return str || '';
 			},
 
 			_getIcon: function(item) {
