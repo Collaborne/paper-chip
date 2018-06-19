@@ -1,4 +1,7 @@
 paper-chip [![Bower version](https://badge.fury.io/bo/paper-chip.svg)](http://badge.fury.io/bo/paper-chip) [![Build Status](https://travis-ci.org/Collaborne/paper-chip.svg?branch=master)](https://travis-ci.org/Collaborne/paper-chip) [![Published on webcomponents.org](https://img.shields.io/badge/webcomponents.org-published-blue.svg)](https://www.webcomponents.org/element/Collaborne/paper-chip)
+  
+[![Published on Vaadin  Directory](https://img.shields.io/badge/Vaadin%20Directory-published-00b4f0.svg)](https://vaadin.com/directory/component/Collabornepaper-chip)
+[![Stars on vaadin.com/directory](https://img.shields.io/vaadin-directory/star/Collabornepaper-chip.svg)](https://vaadin.com/directory/component/Collabornepaper-chip)
 =========
 
 `paper-chip` provides a material design [chip](https://www.google.com/design/spec/components/chips.html) and a section of chips. The web component is built with [Polymer](https://www.polymer-project.org).
