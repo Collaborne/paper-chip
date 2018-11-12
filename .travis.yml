@@ -13,7 +13,7 @@ cache:
 before_install:
   - 'if [ -d node_modules ] && [ x$(cat node_modules/.last-node-version 2>/dev/null) != x$(node -e ''console.log(process.version)'') ]; then npm rebuild --update-binary && node -e ''console.log(process.version)'' > node_modules/.last-node-version; fi'
 before_script:
-  - npm install web-component-tester bower@1.7.9 polylint
-  - $(npm bin)/polylint --no-recursion
+  - npm install web-component-tester bower@1.7.9 polymer-cli
+  - $(npm bin)/polymer lint
 script: xvfb-run $(npm bin)/wct --module-resolution=node --npm
 
