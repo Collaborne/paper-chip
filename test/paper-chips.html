@@ -5,12 +5,8 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-		<script src="../../webcomponentsjs/webcomponents-lite.js"></script>
-		<script src="../../web-component-tester/browser.js"></script>
-		<script src="../../test-fixture/test-fixture-mocha.js"></script>
-
-		<link rel="import" href="../paper-chips.html">
-		<link rel="import" href="../../test-fixture/test-fixture.html">
+		<script src="../node_modules/@webcomponents/webcomponentsjs/webcomponents-loader.js"></script>
+		<script src="../node_modules/wct-browser-legacy/browser.js"></script>
 	</head>
 	<body>
 
@@ -21,61 +17,60 @@
 		</test-fixture>
 
 		<script>
-			suite('<paper-chips>', function() {
-				suite('basic behavior', function() {
-					var element;
-					var apples = { name: 'Apples' };
-					var pears = { name: 'Pears' };
+		suite('<paper-chips>', function() {
+			suite('basic behavior', function() {
+				var element;
+				var apples = { name: 'Apples' };
+				var pears = { name: 'Pears' };
 
-					setup(function() {
-						element = fixture('TrivialElement');
-						element.items = [];
-					});
+				setup(function() {
+					element = fixture('TrivialElement');
+					element.items = [];
+				});
 
-					test('adds chip', function() {
-						element.add(apples);
+				test('adds chip', function() {
+					element.add(apples);
 
-						expect(element.items.length).to.be.eql(1);
-						expect(element.items[0]).to.be.eql(apples);
-					});
+					expect(element.items.length).to.be.eql(1);
+					expect(element.items[0]).to.be.eql(apples);
+				});
 
-					test('adds multiple chips', function() {
-						element.add(apples);
-						element.add(pears);
+				test('adds multiple chips', function() {
+					element.add(apples);
+					element.add(pears);
 
-						expect(element.items.length).to.be.eql(2);
-						expect(element.items[0]).to.be.eql(apples);
-						expect(element.items[1]).to.be.eql(pears);
-					});
+					expect(element.items.length).to.be.eql(2);
+					expect(element.items[0]).to.be.eql(apples);
+					expect(element.items[1]).to.be.eql(pears);
+				});
 
-					test('removes chip at index', function() {
-						element.add(apples);
-						element.add(pears);
+				test('removes chip at index', function() {
+					element.add(apples);
+					element.add(pears);
 
-						// Pre-condition
-						expect(element.items[1]).to.be.eql(pears);
+					// Pre-condition
+					expect(element.items[1]).to.be.eql(pears);
 
-						element.remove(1);
+					element.remove(1);
 
-						expect(element.items.length).to.be.eql(1);
-						expect(element.items[0]).to.be.eql(apples);
-					});
+					expect(element.items.length).to.be.eql(1);
+					expect(element.items[0]).to.be.eql(apples);
+				});
 
-					test('removes last chip', function() {
-						element.add(apples);
-						element.add(pears);
+				test('removes last chip', function() {
+					element.add(apples);
+					element.add(pears);
 
-						// Pre-condition
-						expect(element.items[1]).to.be.eql(pears);
+					// Pre-condition
+					expect(element.items[1]).to.be.eql(pears);
 
-						element.removeLast();
+					element.removeLast();
 
-						expect(element.items.length).to.be.eql(1);
-						expect(element.items[0]).to.be.eql(apples);
-					});
+					expect(element.items.length).to.be.eql(1);
+					expect(element.items[0]).to.be.eql(apples);
 				});
 			});
+		});
 		</script>
-
 	</body>
 </html>

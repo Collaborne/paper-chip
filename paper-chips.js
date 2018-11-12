@@ -1,10 +1,4 @@
-<link rel="import" href="../polymer/polymer.html">
-<link rel="import" href="../iron-icon/iron-icon.html">
-<link rel="import" href="../paper-styles/default-theme.html">
-<link rel="import" href="paper-chip.html">
-<link rel="import" href="paper-chip-icons.html">
-
-<!--
+/**
 A list of chips that an be dynamically added/removed. This element can be used
 to let users enter a list of topics or names.
 
@@ -25,12 +19,23 @@ Property | Description
 `fixed`  | Boolean to indicate whether this item can be removed (`fixed` is `false`) or not (`fixed` is `true`)
 
 @demo demo/chips.html
--->
-<dom-module id="paper-chips">
+*/
+/*
+  FIXME(polymer-modulizer): the above comments were extracted
+  from HTML and may be out of place here. Review them and
+  then delete this comment!
+*/
+import '@polymer/polymer/polymer-legacy.js';
 
-	<template>
-
-		<style>
+import '@polymer/iron-icon/iron-icon.js';
+import '@polymer/paper-styles/default-theme.js';
+import './paper-chip.js';
+import './paper-chip-icons.js';
+import { Polymer } from '@polymer/polymer/lib/legacy/polymer-fn.js';
+import { html } from '@polymer/polymer/polymer-element.js';
+Polymer({
+    _template: html`
+    <style>
 			.chip {
 				margin-right: 5px;
 				padding-right: 6px;
@@ -82,13 +87,10 @@ Property | Description
 					on-tap="_delete"
 				></iron-icon>
 			</paper-chip>
-		</template>
-	</template>
-
-	<script>
-		Polymer({
-			is: 'paper-chips',
-			properties: {
+    </template>
+    `,
+    is: 'paper-chips',
+    properties: {
 				/**
 				* Fired when the user deletes an item
 				*
@@ -107,94 +109,92 @@ Property | Description
 				* ```
 				*/
 				items: {
-					type: Array,
-					notify: true,
-					value: []
+            type: Array,
+            notify: true,
+            value: []
 				},
 
 				/**
 				* True if no items are currently known
 				*/
 				empty: {
-					type: Boolean,
-					notify: true,
-					computed: '_computeEmpty(items.length)'
+            type: Boolean,
+            notify: true,
+            computed: '_computeEmpty(items.length)'
 				}
-			},
+    },
 
-			/**
-			* Adds a chip
-			*/
-			add: function(item) {
+    /**
+    * Adds a chip
+    */
+    add: function(item) {
 				// Only chips with a visible name
 				if (typeof item.name === 'undefined' || item.name === '')  {
-					return;
+            return;
 				}
 
 				// Needs to use Polymer push to trigger data binding
 				this.push('items', item);
-			},
+    },
 
-			/**
-			* Removes a chip
-			*
-			* Note that this will also remove chips marked as 'fixed'.
-			*/
-			remove: function(itemIndex) {
+    /**
+    * Removes a chip
+    *
+    * Note that this will also remove chips marked as 'fixed'.
+    */
+    remove: function(itemIndex) {
 				const removedItemId = this.items[itemIndex].id;
 
 				// Needs to use Polymer splice to trigger data binding
 				this.splice('items', itemIndex, 1);
 
 				this.fire('delete-item', {
-					itemId: removedItemId,
+            itemId: removedItemId,
 				});
-			},
+    },
 
-			/**
-			* Removes the last chip
-			*
-			* Note that this will also remove chips marked as 'fixed'.
-			*/
-			removeLast: function() {
+    /**
+    * Removes the last chip
+    *
+    * Note that this will also remove chips marked as 'fixed'.
+    */
+    removeLast: function() {
 				// Ignore if there are no chips left
 				if (this.items.length === 0) {
-					return;
+            return;
 				}
 
 				this.remove(this.items.length - 1);
-			},
+    },
 
-			/**
-			* Handles clicks on the delete icon
-			*/
-			_delete: function(e) {
+    /**
+    * Handles clicks on the delete icon
+    */
+    _delete: function(e) {
 				if (e.model.item.fixed) {
-					// Cannot delete fixed items.
-					return;
+            // Cannot delete fixed items.
+            return;
 				}
 
 				var itemIndex = this.items.indexOf(e.model.item);
 				if (itemIndex > -1) {
-					this.remove(itemIndex);
+            this.remove(itemIndex);
 				}
-			},
+    },
 
-			_computeEmpty: function(nrItems) {
+    _computeEmpty: function(nrItems) {
 				return nrItems === 0;
-			},
+    },
 
-			/**
-			 * Default string to empty.
-			 * URLs should be set to undefined as this leads to a 404 network request.
-			 */
-			_defaultToEmpty: function(str) {
+    /**
+     * Default string to empty.
+     * URLs should be set to undefined as this leads to a 404 network request.
+     */
+    _defaultToEmpty: function(str) {
 				return str || '';
-			},
+    },
 
-			_getIcon: function(item) {
+    _getIcon: function(item) {
 				return item.fixed ? 'lock' : 'cancel';
-			}
-		});
-	</script>
-</dom-module>
+    }
+});

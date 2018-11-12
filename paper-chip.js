@@ -1,8 +1,4 @@
-<link rel="import" href="../polymer/polymer.html">
-<link rel="import" href="../paper-styles/color.html">
-<link rel="import" href="../paper-styles/typography.html">
-
-<!--
+/**
 A material design [chip](https://www.google.com/design/spec/components/chips.html)
 
 ### Example
@@ -22,12 +18,20 @@ Custom property | Description | Default
 `--paper-chip-color-selectable` | The text color hover of the chip | `white`
 
 @demo demo/chip.html
--->
-<dom-module id="paper-chip">
-
-	<template>
-
-		<style>
+*/
+/*
+  FIXME(polymer-modulizer): the above comments were extracted
+  from HTML and may be out of place here. Review them and
+  then delete this comment!
+*/
+import '@polymer/polymer/polymer-legacy.js';
+import '@polymer/paper-styles/color.js';
+import '@polymer/paper-styles/typography.js';
+import { Polymer } from '@polymer/polymer/lib/legacy/polymer-fn.js';
+import { html } from '@polymer/polymer/polymer-element.js';
+Polymer({
+    _template: html`
+    <style>
 			:host {
 				display: inline-block;
 				background-color: var(--paper-chip-background, var(--paper-grey-300));
@@ -51,19 +55,14 @@ Custom property | Description | Default
 		</style>
 
 		<slot></slot>
-
-	</template>
-
-	<script>
-		Polymer({
-			is: 'paper-chip',
-			properties: {
+    `,
+    is: 'paper-chip',
+    properties: {
 				selectable: {
-					type: Boolean,
-					value: false,
-					reflectToAttribute: true,
+            type: Boolean,
+            value: false,
+            reflectToAttribute: true,
 				},
-			},
-		});
-	</script>
-</dom-module>
+    },
+
+});
