@@ -6,7 +6,11 @@ node_js:
   - node
 addons:
   firefox: latest-esr
-  chrome: stable
+  apt:
+    sources:
+      - google-chrome
+    packages:
+      - google-chrome-stable
 cache:
   directories:
     - node_modules
