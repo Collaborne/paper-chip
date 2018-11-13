@@ -1,0 +1,14 @@
+{
+    "suites": ["test/index.html"],
+    "plugins": {
+        "local": {
+            "browserOptions": {
+                "chrome": [
+                    "headless",
+                    "disable-gpu",
+                    "no-sandbox"
+                ]
+            }
+        }
+    }
+}
