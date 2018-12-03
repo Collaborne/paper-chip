@@ -37,7 +37,7 @@ A section of chips
 
 		<div class="header" hidden=[[!header]]>[[header]]</div>
 		<template is="dom-repeat" items=[[labels]] as="label">
-			<paper-chip class="label">[[label]]</paper-chip>
+			<paper-chip class="label" selectable$=[[selectable]] on-tap="_onTapLabel">[[label]]</paper-chip>
 		</template>
 	</template>
 
@@ -53,7 +53,31 @@ A section of chips
 				/**
 				* Array of labels, e.g. [ 'Apples', 'Pears', 'Oranges' ]
 				*/
-				labels: Array
+				labels: Array,
+				/**
+				* Establishes if chips inside the section are selectable
+				*/
+				selectable: {
+					type: Boolean,
+					value: false,
+				},
+			},
+
+			_onTapLabel(e) {
+				e.stopPropagation();
+
+				const label = e.model.label;
+				if (!this.selectable) {
+					// Not selectable, so ignore this.
+					return;
+				}
+				this.dispatchEvent(new CustomEvent('label-tap', {
+					detail: {
+						label: label.text,
+					},
+					bubbles: true,
+					composed: true,
+				}));
 			}
 		});
 	</script>
