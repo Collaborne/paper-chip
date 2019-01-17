@@ -1,12 +1,25 @@
 <html>
 	<head>
-		<script src="../../webcomponentsjs/webcomponents-lite.js"></script>
-		<link rel="import" href="../../paper-styles/demo-pages.html">
-		<link rel="import" href="../paper-chip.html">
+		<script type="module">
+			import '@webcomponents/webcomponentsjs/webcomponents-loader.js';
+			import '@polymer/iron-demo-helpers/demo-pages-shared-styles.js';
+			import '@polymer/iron-demo-helpers/demo-snippet.js';
+			import '@polymer/paper-checkbox';
+			import '../paper-chip.js';
+		</script>
 	</head>
 
 	<body>
-		Not selectable: <paper-chip>Apples</paper-chip>
-		Selectable: <paper-chip selectable>Pears</paper-chip>
+		<demo-snippet>
+			<template>
+				<h2>&lt;paper-chip&gt;</h2>
+				<dom-bind>
+					<template>
+						<paper-chip selectable="[[selectable]]">Apples</paper-chip>
+						<paper-checkbox checked="{{selectable}}">Selectable</paper-checkbox>
+					</template>
+				</dom-bind>
+			</template>
+		</demo-snippet>
 	</body>
 </html>

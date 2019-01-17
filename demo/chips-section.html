@@ -1,21 +1,29 @@
 <html>
 	<head>
-		<script src="../../webcomponentsjs/webcomponents-lite.js"></script>
-		<link rel="import" href="../../paper-styles/demo-pages.html">
-		<link rel="import" href="../paper-chips-section.html">
+		<script type="module">
+			import '@webcomponents/webcomponentsjs/webcomponents-loader.js';
+			import '@polymer/iron-demo-helpers/demo-pages-shared-styles.js';
+			import '@polymer/iron-demo-helpers/demo-snippet.js';
+			import '@polymer/paper-checkbox';
+			import '../paper-chips-section.js';
+		</script>
 	</head>
 
 	<body>
-		<dom-bind>
+		<demo-snippet>
 			<template>
-				<paper-chips-section id="section" header="Fruits" labels=[[label]]></paper-chips-section>
+				<h2>&lt;paper-chips-section&gt;</h2>
+				<dom-bind>
+					<template>
+						<paper-chips-section id="section" header="Fruits" labels=[[label]]></paper-chips-section>
+					</template>
+				</dom-bind>
+
+				<script>
+					var scope = document.querySelector('dom-bind');
+					scope.label = [ 'Apples', 'Pears', 'Oranges' ];
+				</script>
 			</template>
-		</dom-bind>
-
-		<script>
-			var scope = document.querySelector('dom-bind');
-			scope.label = [ 'Apples', 'Pears', 'Oranges' ];
-		</script>
-
+		</demo-snippet>
 	</body>
 </html>

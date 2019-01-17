@@ -1,42 +1,49 @@
 <html>
 	<head>
-		<script src="../../webcomponentsjs/webcomponents-lite.js"></script>
-		<link rel="import" href="../../iron-input/iron-input.html">
-		<link rel="import" href="../../paper-styles/demo-pages.html">
-		<link rel="import" href="../paper-chips.html">
+		<script type="module">
+			import '@webcomponents/webcomponentsjs/webcomponents-loader.js';
+			import '@polymer/iron-demo-helpers/demo-pages-shared-styles.js';
+			import '@polymer/iron-demo-helpers/demo-snippet.js';
+			import '@polymer/paper-checkbox';
+			import '../paper-chips.js';
+		</script>
 	</head>
 
 	<body>
-		<dom-bind>
+		<demo-snippet>
 			<template>
-				<paper-chips id="chips" items="[[fruits]]" empty="{{empty}}" on-delete-item="onRemove"></paper-chips><br>
-				
-				<iron-input bind-value="{{newFruit}}"><input></input></iron-input>
+				<h2>&lt;paper-chips&gt;</h2>
+				<dom-bind>
+					<template>
+						<paper-chips id="chips" items="[[fruits]]" empty="{{empty}}" on-delete-item="onRemove"></paper-chips><br>
+						
+						<input value="{{newFruit::input}}"></input>
 
-				<button on-tap="onAdd">Add</button>
-				<button on-tap="onRemoveLast">Remove last chip</button><br>
-				Is empty? [[empty]]
+						<button on-tap="onAdd">Add</button>
+						<button on-tap="onRemoveLast">Remove last chip</button><br>
+						Is empty? [[empty]]
+					</template>
+				</dom-bind>
+
+				<script>
+					var scope = document.querySelector('dom-bind');
+					scope.fruits = [
+						{ id: 'apples', name: 'Apples' },
+						{ id: 'pears', name: 'Pears' }
+					];
+
+					scope.onAdd = function() {
+						this.$.chips.add({ name: this.newFruit });
+					}
+					scope.onRemoveLast = function() {
+						this.$.chips.removeLast();
+					}
+					scope.onRemove = function(e) {
+						const {itemId} = e.detail;
+						alert(`Removed item: ${itemId}`);
+					}
+				</script>
 			</template>
-		</dom-bind>
-
-		<script>
-			var scope = document.querySelector('dom-bind');
-			scope.fruits = [
-				{ id: 'apples', name: 'Apples' },
-				{ id: 'pears', name: 'Pears' }
-			];
-
-			scope.onAdd = function() {
-				this.$.chips.add({ name: this.newFruit });
-			}
-			scope.onRemoveLast = function() {
-				this.$.chips.removeLast();
-			}
-			scope.onRemove = function(e) {
-				const {itemId} = e.detail;
-				alert(`Removed item: ${itemId}`);
-			}
-		</script>
-
+		</demo-snippet>
 	</body>
 </html>

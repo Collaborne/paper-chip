@@ -1,35 +1,43 @@
 <html>
 	<head>
-		<script src="../../webcomponentsjs/webcomponents-lite.js"></script>
-		<link rel="import" href="../../paper-styles/demo-pages.html">
-		<link rel="import" href="../paper-chips-search.html">
+		<script type="module">
+			import '@webcomponents/webcomponentsjs/webcomponents-loader.js';
+			import '@polymer/iron-demo-helpers/demo-pages-shared-styles.js';
+			import '@polymer/iron-demo-helpers/demo-snippet.js';
+			import '@polymer/paper-checkbox';
+			import '../paper-chips-search.js';
+		</script>
 	</head>
 
 	<body>
-		<dom-bind>
+		<demo-snippet>
 			<template>
-				<paper-chips-search
-					id="chips"
-					items="{{items}}"
-					search="{{search}}"
-					placeholder="Enter text..."
-				></paper-chips-search>
-				<button on-tap="onAdd">Add</button><br>
-				TODO: Show search results for "[[search]]".
+				<h2>&lt;paper-chips-search&gt;</h2>
+				<dom-bind>
+					<template>
+						<paper-chips-search
+							id="chips"
+							items="{{items}}"
+							search="{{search}}"
+							placeholder="Enter text..."
+						></paper-chips-search>
+						<button on-tap="onAdd">Add</button><br>
+						TODO: Show search results for "[[search]]".
+					</template>
+				</dom-bind>
+
+				<script>
+					var scope = document.querySelector('dom-bind');
+					scope.items = [
+						{ id: 'apples', name: 'Apples', image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/f/f4/Honeycrisp.jpg/220px-Honeycrisp.jpg', fixed: true },
+						{ id: 'pears', name: 'Pears', image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/Assortment_of_pears.jpg/220px-Assortment_of_pears.jpg' },
+						{ id: 'bananas', name: 'Bananas' }
+					];
+					scope.onAdd = function() {
+						this.$.chips.add({ name: this.search });
+					};
+				</script>
 			</template>
-		</dom-bind>
-
-		<script>
-			var scope = document.querySelector('dom-bind');
-			scope.items = [
-				{ id: 'apples', name: 'Apples', image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/f/f4/Honeycrisp.jpg/220px-Honeycrisp.jpg', fixed: true },
-				{ id: 'pears', name: 'Pears', image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/Assortment_of_pears.jpg/220px-Assortment_of_pears.jpg' },
-				{ id: 'bananas', name: 'Bananas' }
-			];
-			scope.onAdd = function() {
-				this.$.chips.add({ name: this.search });
-			};
-		</script>
-
+		</demo-snippet>
 	</body>
 </html>

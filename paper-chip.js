@@ -1,15 +1,9 @@
-<link rel="import" href="../polymer/polymer.html">
-<link rel="import" href="../paper-styles/color.html">
-<link rel="import" href="../paper-styles/typography.html">
+import { PolymerElement, html } from '@polymer/polymer/polymer-element.js';
+import '@polymer/paper-styles/default-theme';
+import '@polymer/paper-styles/typography';
 
-<!--
+/**
 A material design [chip](https://www.google.com/design/spec/components/chips.html)
-
-### Example
-
-```html
-<paper-chip>Apples</paper-chip>
-```
 
 ### Styling
 The following custom properties and mixins are available for styling:
@@ -22,11 +16,10 @@ Custom property | Description | Default
 `--paper-chip-color-selectable` | The text color hover of the chip | `white`
 
 @demo demo/chip.html
--->
-<dom-module id="paper-chip">
-
-	<template>
-
+*/
+class PaperChip extends PolymerElement {
+	static get template() {
+		return html`
 		<style>
 			:host {
 				display: inline-block;
@@ -50,20 +43,21 @@ Custom property | Description | Default
 			}
 		</style>
 
-		<slot></slot>
+		<slot></slot>`;
+	}
 
-	</template>
+	static get is() {
+		return 'paper-chip';
+	}
 
-	<script>
-		Polymer({
-			is: 'paper-chip',
-			properties: {
-				selectable: {
-					type: Boolean,
-					value: false,
-					reflectToAttribute: true,
-				},
+	static get properties() {
+		return {
+			selectable: {
+				type: Boolean,
+				value: false,
+				reflectToAttribute: true,
 			},
-		});
-	</script>
-</dom-module>
+		};
+	}
+}
+window.customElements.define(PaperChip.is, PaperChip);
