@@ -154,6 +154,8 @@ class PaperChips extends GestureEventListeners(PolymerElement) {
 			detail: {
 				itemId: removedItemId,
 			},
+			bubbles: true,
+			composed: true,
 		}));
 	}
 
