@@ -1,2 +1,9 @@
-node_modules/
+/node_modules/
+
+*.orig
+*.rej
+*.porig
+
+npm-shrinkwrap.json
+package-lock.json
 yarn.lock

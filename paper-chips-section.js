@@ -1,4 +1,4 @@
-import { PolymerElement, html } from '@polymer/polymer/polymer-element.js';
+import {PolymerElement, html} from '@polymer/polymer/polymer-element.js';
 import '@polymer/paper-styles/default-theme';
 import '@polymer/paper-styles/typography';
 
@@ -25,7 +25,7 @@ class PaperChipsSection extends PolymerElement {
 			}
 
 			.header {
-				@apply(--paper-font-subhead);
+				@apply --paper-font-subhead;
 				color: var(--secondary-text-color);
 				margin-top: 10px;
 			}
@@ -48,6 +48,7 @@ class PaperChipsSection extends PolymerElement {
 
 	static get properties() {
 		return {
+
 			/**
 			* Text shown in the header
 			*/
@@ -57,6 +58,7 @@ class PaperChipsSection extends PolymerElement {
 			* Array of labels, e.g. [ 'Apples', 'Pears', 'Oranges' ]
 			*/
 			labels: Array,
+
 			/**
 			* Establishes if chips inside the section are selectable
 			*/
@@ -76,11 +78,11 @@ class PaperChipsSection extends PolymerElement {
 			return;
 		}
 		this.dispatchEvent(new CustomEvent('label-tap', {
+			bubbles: true,
+			composed: true,
 			detail: {
 				label: label,
 			},
-			bubbles: true,
-			composed: true,
 		}));
 	}
 }

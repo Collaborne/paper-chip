@@ -1,5 +1,5 @@
-import { PolymerElement, html } from '@polymer/polymer/polymer-element.js';
-import { GestureEventListeners } from '@polymer/polymer/lib/mixins/gesture-event-listeners.js';
+import {PolymerElement, html} from '@polymer/polymer/polymer-element.js';
+import {GestureEventListeners} from '@polymer/polymer/lib/mixins/gesture-event-listeners.js';
 import '@polymer/iron-icon';
 import '@polymer/paper-styles/default-theme';
 
@@ -92,11 +92,15 @@ class PaperChips extends GestureEventListeners(PolymerElement) {
 
 	static get properties() {
 		return {
+
 			/**
-			* Fired when the user deletes an item
-			*
-			* @event delete-item
+			* True if no items are currently known
 			*/
+			empty: {
+				computed: '_computeEmpty(items.length)',
+				notify: true,
+				type: Boolean,
+			},
 
 			/**
 			* Array of chips
@@ -110,28 +114,21 @@ class PaperChips extends GestureEventListeners(PolymerElement) {
 			* ```
 			*/
 			items: {
+				notify: true,
 				type: Array,
-				notify: true,
-				value: []
-			},
-
-			/**
-			* True if no items are currently known
-			*/
-			empty: {
-				type: Boolean,
-				notify: true,
-				computed: '_computeEmpty(items.length)'
+				value: [],
 			},
 		};
 	}
 
 	/**
 	* Adds a chip
+	* @param {object} item To be added chip
+	* @returns {void}
 	*/
 	add(item) {
 		// Only chips with a visible name
-		if (typeof item.name === 'undefined' || item.name === '')  {
+		if (typeof item.name === 'undefined' || item.name === '') {
 			return;
 		}
 
@@ -143,6 +140,8 @@ class PaperChips extends GestureEventListeners(PolymerElement) {
 	* Removes a chip
 	*
 	* Note that this will also remove chips marked as 'fixed'.
+	* @param {number} itemIndex Index of the to be removed chip
+	* @returns {void}
 	*/
 	remove(itemIndex) {
 		const removedItemId = this.items[itemIndex].id;
@@ -151,11 +150,11 @@ class PaperChips extends GestureEventListeners(PolymerElement) {
 		this.splice('items', itemIndex, 1);
 
 		this.dispatchEvent(new CustomEvent('delete-item', {
+			bubbles: true,
+			composed: true,
 			detail: {
 				itemId: removedItemId,
 			},
-			bubbles: true,
-			composed: true,
 		}));
 	}
 
@@ -163,6 +162,7 @@ class PaperChips extends GestureEventListeners(PolymerElement) {
 	* Removes the last chip
 	*
 	* Note that this will also remove chips marked as 'fixed'.
+	* @returns {void}
 	*/
 	removeLast() {
 		// Ignore if there are no chips left
@@ -175,6 +175,8 @@ class PaperChips extends GestureEventListeners(PolymerElement) {
 
 	/**
 	* Handles clicks on the delete icon
+	* @param {any} e Event for deletion
+	* @returns {void}
 	*/
 	_delete(e) {
 		if (e.model.item.fixed) {
@@ -182,7 +184,7 @@ class PaperChips extends GestureEventListeners(PolymerElement) {
 			return;
 		}
 
-		var itemIndex = this.items.indexOf(e.model.item);
+		const itemIndex = this.items.indexOf(e.model.item);
 		if (itemIndex > -1) {
 			this.remove(itemIndex);
 		}
@@ -193,8 +195,8 @@ class PaperChips extends GestureEventListeners(PolymerElement) {
 	}
 
 	/**
-	 * Default string to empty.
-	 * URLs should be set to undefined as this leads to a 404 network request.
+	 * @param {string} str String value
+	 * @returns {string} Provided value or empty string
 	 */
 	_defaultToEmpty(str) {
 		return str || '';

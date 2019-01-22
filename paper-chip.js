@@ -1,4 +1,4 @@
-import { PolymerElement, html } from '@polymer/polymer/polymer-element.js';
+import {PolymerElement, html} from '@polymer/polymer/polymer-element.js';
 import '@polymer/paper-styles/default-theme';
 import '@polymer/paper-styles/typography';
 
@@ -53,9 +53,9 @@ class PaperChip extends PolymerElement {
 	static get properties() {
 		return {
 			selectable: {
+				reflectToAttribute: true,
 				type: Boolean,
 				value: false,
-				reflectToAttribute: true,
 			},
 		};
 	}

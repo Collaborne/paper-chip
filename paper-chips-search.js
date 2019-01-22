@@ -1,6 +1,6 @@
-import { PolymerElement, html } from '@polymer/polymer/polymer-element.js';
-import { mixinBehaviors } from '@polymer/polymer/lib/legacy/class.js';
-import { IronA11yKeysBehavior } from '@polymer/iron-a11y-keys-behavior/iron-a11y-keys-behavior.js';
+import {PolymerElement, html} from '@polymer/polymer/polymer-element.js';
+import {mixinBehaviors} from '@polymer/polymer/lib/legacy/class.js';
+import {IronA11yKeysBehavior} from '@polymer/iron-a11y-keys-behavior/iron-a11y-keys-behavior.js';
 
 import './paper-chips.js';
 
@@ -61,14 +61,7 @@ class PaperChip extends mixinBehaviors([IronA11yKeysBehavior], PolymerElement) {
 
 	static get properties() {
 		return {
-			/**
-			* Text for which the user is searching
-			*/
-			search: {
-				type: String,
-				notify: true,
-				value: ''
-			},
+			autofocus: Boolean,
 
 			/**
 			* Array of chips, e.g. [
@@ -78,9 +71,9 @@ class PaperChip extends mixinBehaviors([IronA11yKeysBehavior], PolymerElement) {
 			* ]
 			*/
 			items: {
-				type: Array,
 				notify: true,
-				value: []
+				type: Array,
+				value: [],
 			},
 
 			/**
@@ -88,21 +81,30 @@ class PaperChip extends mixinBehaviors([IronA11yKeysBehavior], PolymerElement) {
 			*/
 			placeholder: {
 				type: String,
-				value: 'Search'
+				value: 'Search',
 			},
 
-			autofocus: Boolean,
+			/**
+			* Text for which the user is searching
+			*/
+			search: {
+				notify: true,
+				type: String,
+				value: '',
+			},
 		};
 	}
 
 	get keyBindings() {
 		return {
-			'backspace': '_removeLastChip'
+			backspace: '_removeLastChip'
 		};
 	}
 
 	/**
 	* Adds a chip
+	* @param {object} item To be added chip
+	* @returns {void}
 	*/
 	add(item) {
 		this.$.chips.add(item);
@@ -115,6 +117,7 @@ class PaperChip extends mixinBehaviors([IronA11yKeysBehavior], PolymerElement) {
 
 	/**
 	* Focuses the input box
+	* @returns {void}
 	*/
 	focus() {
 		this.$.input.focus();
@@ -122,6 +125,10 @@ class PaperChip extends mixinBehaviors([IronA11yKeysBehavior], PolymerElement) {
 
 	/**
 	* Only show the placeholder if no non-fixed items are selected
+	*
+	* @param {number} nrItems Triggers the recalculation of the placeholder
+	* @param {string} placeholder Placeholder to be shown
+	* @returns {string} Placeholder if there no fixed items
 	*/
 	_getPlaceholder(nrItems, placeholder) {
 		const nonFixedItems = this.items.filter(item => !item.fixed);

@@ -8,14 +8,13 @@ paper-chip [![Bower version](https://badge.fury.io/bo/paper-chip.svg)](http://ba
 
 To use element:
 
-`npm install @collaborne/paper-chip`
+`npm install @collaborne/paper-chip --save`
 
 ```html
 <paper-chip>Apples</paper-chip>
 <paper-chip selectable>Oranges</paper-chip>
 <paper-chip selectable>Pears</paper-chip>
 ```
-
 
 ## License
 
