@@ -1,6 +1,7 @@
 import {PolymerElement, html} from '@polymer/polymer/polymer-element.js';
 import {mixinBehaviors} from '@polymer/polymer/lib/legacy/class.js';
 import {IronA11yKeysBehavior} from '@polymer/iron-a11y-keys-behavior/iron-a11y-keys-behavior.js';
+import '@polymer/iron-input';
 
 import './paper-chips.js';
 
@@ -29,11 +30,16 @@ class PaperChip extends mixinBehaviors([IronA11yKeysBehavior], PolymerElement) {
 				@apply --paper-chips-search;
 			}
 
+			iron-input {
+				height: 32px;
+				width: 40%;
+			}
+
 			#input {
 				border: 0;
 				outline: 0;
-				height: 32px;
-				width: 40%;
+				height: 100%;
+				width: 100%;
 				@apply --paper-chips-search-input;
 			}
 
@@ -47,12 +53,13 @@ class PaperChip extends mixinBehaviors([IronA11yKeysBehavior], PolymerElement) {
 			items="{{items}}"
 			on-delete-item="focus"
 		></paper-chips>
-		<input
-			id="input"
-			value="{{search::input}}"
-			placeholder="[[_getPlaceholder(items.length, placeholder)]]"
-			autofocus="[[autofocus]]"
-		/>`;
+		<iron-input bind-value="{{value}}">
+			<input
+				id="input"
+				placeholder="[[placeholder]]"
+				autofocus="[[autofocus]]"
+			>
+		</iron-input>`;
 	}
 
 	static get is() {
@@ -77,17 +84,25 @@ class PaperChip extends mixinBehaviors([IronA11yKeysBehavior], PolymerElement) {
 			},
 
 			/**
-			* Text shown in the search box if the user didn't enter any search
-			*/
+			 * Text shown in the search box if the user didn't enter any search
+			 */
 			placeholder: {
 				type: String,
 				value: 'Search',
 			},
 
 			/**
-			* Text for which the user is searching
-			*/
+			 * Backwards compatibility. Use value instead.
+			 */
 			search: {
+				computed: '_copy(value)',
+				type: String,
+			},
+
+			/**
+			 * Text for which the user is searching
+			 */
+			value: {
 				notify: true,
 				type: String,
 				value: '',
@@ -110,7 +125,7 @@ class PaperChip extends mixinBehaviors([IronA11yKeysBehavior], PolymerElement) {
 		this.$.chips.add(item);
 
 		// Clear current search term
-		this.search = '';
+		this.value = '';
 
 		this.focus();
 	}
@@ -123,30 +138,18 @@ class PaperChip extends mixinBehaviors([IronA11yKeysBehavior], PolymerElement) {
 		this.$.input.focus();
 	}
 
-	/**
-	* Only show the placeholder if no non-fixed items are selected
-	*
-	* @param {number} nrItems Triggers the recalculation of the placeholder
-	* @param {string} placeholder Placeholder to be shown
-	* @returns {string} Placeholder if there no fixed items
-	*/
-	_getPlaceholder(nrItems, placeholder) {
-		const nonFixedItems = this.items.filter(item => !item.fixed);
-		if (Boolean(nonFixedItems) && nonFixedItems.length > 0) {
-			return '';
-		}
-
-		return placeholder;
-	}
-
 	_removeLastChip() {
 		// If there is search then backspace will remove some text, otherwise
 		// we check whether the last chip is not fixed and should be removed.
-		if (this.search.length === 0) {
+		if (this.value.length === 0) {
 			if (!this.$.chips.empty && !this.$.chips.items[this.$.chips.items.length - 1].fixed) {
 				this.$.chips.removeLast();
 			}
 		}
+	}
+
+	_copy(value) {
+		return value;
 	}
 }
 window.customElements.define(PaperChip.is, PaperChip);

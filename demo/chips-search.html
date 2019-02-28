@@ -5,15 +5,16 @@
 			import '@polymer/iron-demo-helpers/demo-pages-shared-styles.js';
 			import '@polymer/iron-demo-helpers/demo-snippet.js';
 			import '@polymer/paper-checkbox';
+			import '@vaadin/vaadin-combo-box/vaadin-combo-box-light';
 			import '../paper-chips-search.js';
 		</script>
 	</head>
 
 	<body>
+		<h2>&lt;paper-chips-search&gt;</h2>
 		<demo-snippet>
 			<template>
-				<h2>&lt;paper-chips-search&gt;</h2>
-				<dom-bind>
+				<dom-bind id="basic">
 					<template>
 						<paper-chips-search
 							id="chips"
@@ -27,7 +28,7 @@
 				</dom-bind>
 
 				<script>
-					var scope = document.querySelector('dom-bind');
+					var scope = document.querySelector('#basic');
 					scope.items = [
 						{ id: 'apples', name: 'Apples', image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/f/f4/Honeycrisp.jpg/220px-Honeycrisp.jpg', fixed: true },
 						{ id: 'pears', name: 'Pears', image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/Assortment_of_pears.jpg/220px-Assortment_of_pears.jpg' },
@@ -36,6 +37,78 @@
 					scope.onAdd = function() {
 						this.$.chips.add({ name: this.search });
 					};
+				</script>
+			</template>
+		</demo-snippet>
+
+		<h2>Integration with Vaadin combo box</h2>
+		<demo-snippet>
+			<template>
+				<dom-bind id="vaadin">
+					<template>
+						<style>
+							paper-chips-search {
+								padding: 0;
+							}
+						</style>
+
+						<vaadin-combo-box-light
+							id="comboBox"
+							data-provider="[[dataProvider]]"
+							selected-item="{{selectedItem}}"
+							item-id-path="id"
+							item-value-path="id"
+							item-label-path="name"
+							on-change="comboBoxValueChanged">
+							<template>
+								<div>[[item.name]] ([[item.id]])</div>
+							</template>
+							<paper-chips-search
+								id="chips"
+								items="{{selectedItems}}"
+								placeholder="Enter text..."
+								on-delete-item="reload"
+								class="input"
+							></paper-chips-search>
+						</vaadin-combo-box-light>
+					</template>
+				</dom-bind>
+
+				<script>
+					var scope = document.querySelector('#vaadin');
+					const ITEMS = [
+						{ id: 'apples', name: 'Apples', image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/f/f4/Honeycrisp.jpg/220px-Honeycrisp.jpg', fixed: true },
+						{ id: 'pears', name: 'Pears', image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/Assortment_of_pears.jpg/220px-Assortment_of_pears.jpg' },
+						{ id: 'bananas', name: 'Bananas' }
+					];
+
+					// Pre-select one of the items
+					scope.selectedItems = [ITEMS[0]];
+
+					scope.dataProvider = (params, callback) => {
+						const selectedItemsIds = scope.selectedItems.map(item => item.id);
+						const options = ITEMS
+							// Don't include already selected options
+							.filter(item => !selectedItemsIds.includes(item.id))
+							// Matches the search query case-insensitive
+							.filter(item => item.name.toLocaleLowerCase().startsWith(params.filter.toLocaleLowerCase()));
+						callback(options, options.length);
+					};
+
+					scope.comboBoxValueChanged = function() {
+						const item = this.selectedItem;
+						this.$.chips.add(item);
+
+						// Reset input element
+						this.selectedItem = undefined;
+
+						// For reload of options
+						this.$.comboBox.clearCache();
+					};
+					scope.reload = function() {
+						// For reload of options
+						this.$.comboBox.clearCache();
+					}
 				</script>
 			</template>
 		</demo-snippet>
