@@ -25,19 +25,27 @@ class PaperChip extends mixinBehaviors([IronA11yKeysBehavior], PolymerElement) {
 				background: white;
 				display: block;
 				padding: 5px 16px;
-				min-height: 32px;
-				line-height: 40px;
+				min-height: 40px;
 				@apply --paper-chips-search;
+			}
+
+			paper-chips {
+				--paper-chips-chip: {
+					margin-top: 4px;
+					margin-bottom: 4px;
+				}
 			}
 
 			iron-input {
 				height: 32px;
 				width: 40%;
+				vertical-align: middle;
 			}
 
 			#input {
 				border: 0;
 				outline: 0;
+				padding: 0;
 				height: 100%;
 				width: 100%;
 				@apply --paper-chips-search-input;

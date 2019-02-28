@@ -33,6 +33,7 @@ class PaperChips extends GestureEventListeners(PolymerElement) {
 		return html`
 		<style>
 			.chip {
+				@apply --paper-chips-chip;
 				margin-right: 5px;
 				padding-right: 6px;
 				vertical-align: middle;
