@@ -40,6 +40,7 @@ class PaperChip extends mixinBehaviors([IronA11yKeysBehavior], PolymerElement) {
 				height: 32px;
 				width: 40%;
 				vertical-align: middle;
+				margin: 4px 0;
 			}
 
 			#input {
