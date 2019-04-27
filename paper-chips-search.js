@@ -24,7 +24,7 @@ class PaperChip extends mixinBehaviors([IronA11yKeysBehavior], PolymerElement) {
 			:host {
 				background: white;
 				display: block;
-				padding: 5px 16px;
+				padding: var(--paper-chips-search-adding, 5px 16px);
 				min-height: 40px;
 				@apply --paper-chips-search;
 			}
