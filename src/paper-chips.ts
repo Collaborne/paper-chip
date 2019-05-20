@@ -78,8 +78,6 @@ export class PaperChips extends LitElement {
 
 	private fireDeleted(item: Item) {
 		this.dispatchEvent(new CustomEvent('delete-item', {
-			bubbles: true,
-			composed: true,
 			detail: {
 				item,
 			},

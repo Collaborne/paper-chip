@@ -138,6 +138,14 @@ export class PaperChipsSearch extends LitElement {
 		}
 
 		this.items = this.items.filter(aItem => aItem.id !== item.id);
+
+		this.dispatchEvent(new CustomEvent('delete-item', {
+			bubbles: true,
+			composed: true,
+			detail: {
+				itemId: item.id,
+			},
+		}));
 	}
 
 	private removeLastChip() {

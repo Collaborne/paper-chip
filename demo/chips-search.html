@@ -21,6 +21,7 @@
 							items="[[items]]"
 							placeholder="Enter text..."
 							on-input="onInput"
+							on-delete-item="onDelete"
 						></paper-chips-search>
 						<button on-tap="onAdd">Add</button><br>
 						TODO: Show search results for "[[search]]".
@@ -45,6 +46,10 @@
 					basicScope.onInput = () => {
 						const chipsEl = document.querySelector('#chips');
 						basicScope.search = chipsEl.value;
+					};
+					basicScope.onDelete = (e) => {
+						const { itemId } = e.detail;
+						console.log(`Deleted ${itemId}`);
 					};
 				</script>
 			</template>
