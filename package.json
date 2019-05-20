@@ -10,7 +10,8 @@
   "homepage": "https://github.com/collaborne/paper-chip",
   "name": "@collaborne/paper-chip",
   "version": "4.0.0",
-  "main": "paper-chip.js",
+  "main": "dist/paper-chips-search.js",
+  "types": "dist/paper-chips-search.d.ts",
   "author": "collaborne",
   "license": "Apache-2.0",
   "bugs": {
