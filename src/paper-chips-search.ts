@@ -102,6 +102,7 @@ export class PaperChipsSearch extends LitElement {
 				.placeholder="${this.placeholder}"
 				?autofocus="${this.autofocus}"
 				@keydown="${this.onKeydown}"
+				@input="${this.onInput}"
 			>
 		`;
 	}
@@ -118,11 +119,13 @@ export class PaperChipsSearch extends LitElement {
 	}
 
 	private onKeydown(e: any) {
-		this.value = this.inputEl!.value;
-
 		if (e.key === 'Backspace') {
 			this.removeLastChip();
 		}
+	}
+
+	private onInput() {
+		this.value = this.inputEl!.value;
 	}
 
 	/**
