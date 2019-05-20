@@ -9,7 +9,7 @@
   ],
   "homepage": "https://github.com/collaborne/paper-chip",
   "name": "@collaborne/paper-chip",
-  "version": "4.0.0",
+  "version": "4.0.1",
   "main": "dist/paper-chips-search.js",
   "types": "dist/paper-chips-search.d.ts",
   "author": "collaborne",
