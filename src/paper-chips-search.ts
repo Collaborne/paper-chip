@@ -47,19 +47,14 @@ export class PaperChipsSearch extends LitElement {
 				@apply --paper-chips-search;
 			}
 
-			iron-input {
-				height: 32px;
-				width: 40%;
-				vertical-align: middle;
-				margin: 4px 0;
-			}
-
 			#input {
 				border: 0;
 				outline: 0;
 				padding: 0;
-				@apply --paper-chips-search-input;
+				height: 32px;
 				width: 40%;
+				vertical-align: middle;
+				margin: 4px 0;
 			}
 
 			#input::placeholder {
