@@ -1,10 +1,11 @@
 {
-  "description": "Polymer component that allows to select between a set of predefined emojis",
+  "description": "LitElement component that allows to select between a set of predefined emojis",
   "keywords": [
     "web-components",
     "polymer",
     "emoji",
-    "reaction"
+    "reaction",
+    "litelement"
   ],
   "homepage": "https://github.com/collaborne/paper-chip",
   "name": "@collaborne/paper-chip",
@@ -19,15 +20,22 @@
     "type": "git",
     "url": "git+https://github.com/Collaborne/paper-chip.git"
   },
+  "files": [
+    "dist"
+  ],
   "scripts": {
-    "lint": "eslint . && polymer lint",
-    "test": "npm run lint && echo 'No tests yet'"
+    "build": "node_modules/typescript/bin/tsc",
+    "lint": "tslint -c tslint.json \"src/**/*.ts\"",
+    "test": "npm run lint && echo 'No tests yet'",
+    "prepublish": "npm run lint && npm run build",
+    "start-dev": "node_modules/typescript/bin/tsc --watch & polymer serve"
   },
   "dependencies": {
     "@polymer/iron-a11y-keys-behavior": "^3.0.1",
     "@polymer/iron-iconset-svg": "^3.0.1",
     "@polymer/paper-styles": "^3.0.1",
-    "@polymer/polymer": "^3.0.0"
+    "@polymer/polymer": "^3.1.0",
+    "lit-element": "^2.1.0"
   },
   "devDependencies": {
     "@polymer/iron-component-page": "^4.0.0",
@@ -35,8 +43,10 @@
     "@polymer/iron-input": "^3.0.1",
     "@polymer/paper-checkbox": "^3.1.0",
     "@vaadin/vaadin-combo-box": "^4.2.5",
-    "eslint": "^5.12.1",
-    "eslint-config-collaborne": "^1.5.0",
-    "polymer-cli": "^1.9.5"
+    "polymer-cli": "^1.9.5",
+    "ts-node": "^8.0.3",
+    "tslint": "^5.14.0",
+    "tslint-config-collaborne": "^0.0.4",
+    "typescript": "^3.3.4000"
   }
 }

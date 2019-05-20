@@ -6,7 +6,7 @@
 			import '@polymer/iron-demo-helpers/demo-snippet.js';
 			import '@polymer/paper-checkbox';
 			import '@vaadin/vaadin-combo-box/vaadin-combo-box-light';
-			import '../paper-chips-search.js';
+			import '../dist/paper-chips-search.js';
 		</script>
 	</head>
 
@@ -18,9 +18,9 @@
 					<template>
 						<paper-chips-search
 							id="chips"
-							items="{{items}}"
-							value="{{search}}"
+							items="[[items]]"
 							placeholder="Enter text..."
+							on-input="onInput"
 						></paper-chips-search>
 						<button on-tap="onAdd">Add</button><br>
 						TODO: Show search results for "[[search]]".
@@ -28,14 +28,23 @@
 				</dom-bind>
 
 				<script>
-					var scope = document.querySelector('#basic');
-					scope.items = [
+					const basicScope = document.querySelector('#basic');
+
+					basicScope.items = [
 						{ id: 'apples', name: 'Apples', image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/f/f4/Honeycrisp.jpg/220px-Honeycrisp.jpg', fixed: true },
 						{ id: 'pears', name: 'Pears', image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/Assortment_of_pears.jpg/220px-Assortment_of_pears.jpg' },
 						{ id: 'bananas', name: 'Bananas' }
 					];
-					scope.onAdd = function() {
-						this.$.chips.add({ name: this.search });
+					basicScope.onAdd = () => {
+						const chipsEl = document.querySelector('#chips');
+						chipsEl.add({
+							id: Math.random(),
+							name: basicScope.search,
+						});
+					};
+					basicScope.onInput = () => {
+						const chipsEl = document.querySelector('#chips');
+						basicScope.search = chipsEl.value;
 					};
 				</script>
 			</template>
@@ -75,7 +84,7 @@
 				</dom-bind>
 
 				<script>
-					var scope = document.querySelector('#vaadin');
+					const vaadinScope = document.querySelector('#vaadin');
 					const ITEMS = [
 						{ id: 'apples', name: 'Apples', image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/f/f4/Honeycrisp.jpg/220px-Honeycrisp.jpg', fixed: true },
 						{ id: 'pears', name: 'Pears', image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/Assortment_of_pears.jpg/220px-Assortment_of_pears.jpg' },
@@ -83,10 +92,10 @@
 					];
 
 					// Pre-select one of the items
-					scope.selectedItems = [ITEMS[0]];
+					vaadinScope.selectedItems = [ITEMS[0]];
 
-					scope.dataProvider = (params, callback) => {
-						const selectedItemsIds = scope.selectedItems.map(item => item.id);
+					vaadinScope.dataProvider = (params, callback) => {
+						const selectedItemsIds = vaadinScope.selectedItems.map(item => item.id);
 						const options = ITEMS
 							// Don't include already selected options
 							.filter(item => !selectedItemsIds.includes(item.id))
@@ -95,7 +104,7 @@
 						callback(options, options.length);
 					};
 
-					scope.comboBoxValueChanged = function() {
+					vaadinScope.comboBoxValueChanged = function() {
 						const item = this.selectedItem;
 						this.$.chips.add(item);
 
@@ -105,7 +114,7 @@
 						// For reload of options
 						this.$.comboBox.clearCache();
 					};
-					scope.reload = function() {
+					vaadinScope.reload = function() {
 						// For reload of options
 						this.$.comboBox.clearCache();
 					}
