@@ -71,7 +71,7 @@
 				<dom-bind id="vaadin">
 					<template>
 						<style>
-							paper-chips-search {
+							.vaadin-chips {
 								padding: 0;
 							}
 						</style>
@@ -92,7 +92,7 @@
 								items="{{selectedItems}}"
 								placeholder="Enter text..."
 								on-delete-item="reload"
-								class="input"
+								class="vaadin-chips input"
 							></paper-chips-search>
 						</vaadin-combo-box-light>
 					</template>

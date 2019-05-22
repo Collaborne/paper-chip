@@ -19,7 +19,6 @@ export class PaperChips extends LitElement {
 	static get styles() {
 		return css`
 			.chip {
-				@apply --paper-chips-chip;
 				margin-right: 5px;
 				padding-right: 6px;
 				vertical-align: middle;
@@ -43,7 +42,7 @@ export class PaperChips extends LitElement {
 			.delete {
 				--iron-icon-height: 20px;
 				--iron-icon-width: 20px;
-				color: var(--disabled-text-color);
+				color: var(--paper-chips-delete-color, var(--disabled-text-color));
 			}
 
 			.chip[selectable]:hover .delete {

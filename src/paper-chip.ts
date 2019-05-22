@@ -33,8 +33,9 @@ export class PaperChip extends LitElement {
 				padding: var(--paper-chip-padding, 0 12px);
 				border-radius: 16px;
 				color: var(--paper-chip-color, var(--primary-text-color));
-				font-size: 13px!important;
-				@apply --paper-font-body1;
+				font-size: var(--paper-chips-font-size, 13px);
+				font-family: var(--paper-chips-font-family);
+				margin: var(--paper-chips-margin);
 			}
 
 			:host([selectable]) {

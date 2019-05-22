@@ -44,7 +44,9 @@ export class PaperChipsSearch extends LitElement {
 				padding: var(--paper-chips-search-padding, 5px 16px);
 				background: var(--paper-chips-search-background, white);
 				color: var(--paper-chips-search-color);
-				min-height: 40px;
+				--paper-chips-margin: 2px 0;
+				--paper-chips-font-size: var(--paper-chips-search-font-size);
+				--paper-chips-font-family: var(--paper-chips-search-font-family);
 			}
 
 			#input {
@@ -54,7 +56,7 @@ export class PaperChipsSearch extends LitElement {
 				height: 32px;
 				width: 40%;
 				vertical-align: middle;
-				margin: 4px 0;
+				margin: 2px 0;
 				background: transparent;
 				font-size: var(--paper-chips-search-font-size);
 				font-family: var(--paper-chips-search-font-family);

@@ -37,8 +37,6 @@ export class PaperChipsSection extends LitElement {
 			}
 
 			.header {
-				@apply --paper-font-subhead;
-				color: var(--secondary-text-color);
 				margin-top: 10px;
 			}
 
