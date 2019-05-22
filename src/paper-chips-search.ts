@@ -40,11 +40,11 @@ export class PaperChipsSearch extends LitElement {
 	static get styles() {
 		return css`
 			:host {
-				background: white;
 				display: block;
 				padding: var(--paper-chips-search-padding, 5px 16px);
+				background: var(--paper-chips-search-background, white);
+				color: var(--paper-chips-search-color);
 				min-height: 40px;
-				@apply --paper-chips-search;
 			}
 
 			#input {
@@ -55,10 +55,13 @@ export class PaperChipsSearch extends LitElement {
 				width: 40%;
 				vertical-align: middle;
 				margin: 4px 0;
+				background: transparent;
+				font-size: var(--paper-chips-search-font-size);
+				font-family: var(--paper-chips-search-font-family);
 			}
 
 			#input::placeholder {
-				@apply --paper-chips-search-input-placeholder;
+				color: var(--paper-chips-search-placeholder-color);
 			}
 		`;
 	}

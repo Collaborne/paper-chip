@@ -16,6 +16,16 @@
 			<template>
 				<dom-bind id="basic">
 					<template>
+						<style>
+							paper-chips-search {
+								--paper-chips-search-padding: 8px;
+								--paper-chips-search-background: lightyellow;
+								--paper-chips-search-color: darkblue;
+								--paper-chips-search-placeholder-color: darkred;
+								--paper-chips-search-font-size: 16px;
+								--paper-chips-search-font-family: Courier;
+							}
+						</style>
 						<paper-chips-search
 							id="chips"
 							items="[[items]]"
