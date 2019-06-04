@@ -1,5 +1,6 @@
 import { css, customElement, html, LitElement, property } from 'lit-element';
 
+import * as Flexbox from '@collaborne/lit-flexbox-literals';
 import '@polymer/iron-icon';
 import '@polymer/paper-styles/default-theme';
 
@@ -19,9 +20,12 @@ export class PaperChips extends LitElement {
 	static get styles() {
 		return css`
 			.chip {
+				${Flexbox.displayInlineFlex}
+				${Flexbox.horizontal}
+				${Flexbox.centerAligned}
 				margin-right: 5px;
 				padding-right: 6px;
-				vertical-align: middle;
+				vertical-align: top;
 			}
 			.chip:not([has-no-image]) {
 				padding: 0 12px 0 0;
@@ -32,11 +36,12 @@ export class PaperChips extends LitElement {
 				width: 32px;
 				height: 32px;
 				border-radius: 0 50% 50% 0;
-				vertical-align: middle;
 				margin-right: 4px;
 			}
-			.image-spacer {
-				margin-left: 12px;
+
+			.name {
+				${Flexbox.flexFactor}
+				padding: 0 8px;
 			}
 
 			.delete {
@@ -47,10 +52,6 @@ export class PaperChips extends LitElement {
 
 			.chip[selectable]:hover .delete {
 				color: black;
-			}
-
-			[hidden] {
-				display: none;
 			}
 		`;
 	}
@@ -63,8 +64,10 @@ export class PaperChips extends LitElement {
 					class="chip"
 					?selectable="${!item.fixed}"
 					?has-no-image="${!item.image}">
-					<img .src="${item.image || ''}" ?hidden="${!item.image}" />
-					${item.name}
+					${item.image ? html`
+						<img .src="${item.image || ''}" />
+					` : html``}
+					<span class="name">${item.name}</span>
 					<iron-icon
 						.icon="${item.fixed ? 'paper-chip:lock' : 'paper-chip:cancel'}"
 						class="delete"

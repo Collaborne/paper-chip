@@ -32,6 +32,7 @@
     "start-dev": "node_modules/typescript/bin/tsc --watch & polymer serve"
   },
   "dependencies": {
+    "@collaborne/lit-flexbox-literals": "^0.2.2",
     "@polymer/iron-a11y-keys-behavior": "^3.0.1",
     "@polymer/iron-iconset-svg": "^3.0.1",
     "@polymer/paper-styles": "^3.0.1",
