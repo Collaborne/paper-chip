@@ -25,11 +25,11 @@
     "dist"
   ],
   "scripts": {
-    "build": "node_modules/typescript/bin/tsc",
+    "build": "tsc",
     "lint": "tslint -c tslint.json \"src/**/*.ts\"",
     "test": "npm run lint && echo 'No tests yet'",
     "prepublish": "npm run lint && npm run build",
-    "start-dev": "node_modules/typescript/bin/tsc --watch & polymer serve"
+    "start-dev": "tsc --watch & polymer serve"
   },
   "dependencies": {
     "@collaborne/lit-flexbox-literals": "^0.2.2",
